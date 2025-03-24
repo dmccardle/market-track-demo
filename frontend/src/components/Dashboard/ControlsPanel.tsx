@@ -1,4 +1,4 @@
-import { Center, Flex, HStack, Select, Switch } from "@chakra-ui/react";
+import { Center, Flex, HStack } from "@chakra-ui/react";
 import VarietySelect from "./VarietySelect";
 import FOVDeliveredSwitch from "./FOVDeliveredSwitch";
 

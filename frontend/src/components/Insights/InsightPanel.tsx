@@ -1,4 +1,4 @@
-import { Box, Grid, Heading, Text } from "@chakra-ui/react";
+import { Box, Grid, Heading } from "@chakra-ui/react";
 import InsightSegment from "./InsightSegment";
 
 const InsightPanel: React.FC = () => {
