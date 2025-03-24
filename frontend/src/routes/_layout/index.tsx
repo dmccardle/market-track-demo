@@ -6,11 +6,13 @@ import InsightPanel from "@/components/Insights/InsightPanel"
 
 const Dashboard: React.FC = () => {
   return (
-    <Flex h="100vh" bg="gray.100" p={6} gap={4} wrap="wrap" direction={{ base: "row", sm: "column" }}>
-      <Flex bg="white" p={6} borderRadius="lg" boxShadow="sm" flex={1}>
-        <GraphPanel />
+    <Flex gap={2} direction={{ base: "column", md: "row" }}>
+      <Flex bg="green" flex={1}>
+        GraphPanel
       </Flex>
-      <InsightPanel />
+      <Flex bg="red" width="sm">
+        InsightPanel
+      </Flex>
     </Flex>
   );
 };
