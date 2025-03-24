@@ -10,9 +10,7 @@ const Dashboard: React.FC = () => {
       <Flex bg="green" flex={1}>
         GraphPanel
       </Flex>
-      <Flex bg="red" width={{ base: "100%", md: "sm"}}>
-        InsightPanel
-      </Flex>
+      <InsightPanel />
     </Flex>
   );
 };
