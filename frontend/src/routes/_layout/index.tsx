@@ -1,16 +1,18 @@
-import { Box, Container, Flex, Heading, SimpleGrid } from "@chakra-ui/react"
+import { Flex, Heading } from "@chakra-ui/react"
 import { createFileRoute } from "@tanstack/react-router"
 
-import GraphPanel from "@/components/Dashboard/GraphPanel"
 import InsightPanel from "@/components/Insights/InsightPanel"
+import GraphPanel from "@/components/Dashboard/GraphPanel";
+import ControlsPanel from "@/components/Dashboard/ControlsPanel";
 
 const Dashboard: React.FC = () => {
   return (
-    <Flex direction="column" gap={1}>
+    <Flex direction="column" gap={3}>
       <Heading size="3xl">March 19<sup>th</sup> - 26<sup>th</sup>, 2025</Heading>
+      <ControlsPanel />
       <Flex gap={2} direction={{ base: "column", md: "row" }}>
-        <Flex bg="green" flex={1}>
-          GraphPanel
+        <Flex flex={1}>
+          <GraphPanel />
         </Flex>
         <InsightPanel />
       </Flex>
