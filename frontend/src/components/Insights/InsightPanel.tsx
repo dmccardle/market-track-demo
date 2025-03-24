@@ -8,7 +8,7 @@ const InsightPanel: React.FC = () => {
       borderColor="gray.300"
       borderRadius="lg"
       p={6}
-      w="md" // Adjust width as needed
+      width={{ base: "sm", sm: "100%" }}
       bg="white"
       boxShadow="sm"
     >
