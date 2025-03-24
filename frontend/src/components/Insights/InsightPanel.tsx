@@ -1,4 +1,4 @@
-import { Box, Grid, Text } from "@chakra-ui/react";
+import { Box, Grid, Heading, Text } from "@chakra-ui/react";
 import InsightSegment from "./InsightSegment";
 
 const InsightPanel: React.FC = () => {
@@ -13,12 +13,12 @@ const InsightPanel: React.FC = () => {
       boxShadow="sm"
     >
       <Grid templateColumns="1fr 1fr" gap={4} mb={3}>
-        <Text fontWeight="bold" textAlign="center" textDecoration="underline">
+        <Heading textAlign="center" textDecoration="underline">
           Quantity
-        </Text>
-        <Text fontWeight="bold" textAlign="center" textDecoration="underline">
+        </Heading>
+        <Heading textAlign="center" textDecoration="underline">
           Avg. Price
-        </Text>
+        </Heading>
       </Grid>
 
       <InsightSegment label="This week" leftValue="1,500" rightValue="$20.00" />
