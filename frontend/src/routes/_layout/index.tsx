@@ -10,7 +10,7 @@ const Dashboard: React.FC = () => {
     <Flex direction="column" gap={3}>
       <Heading size="3xl">March 19<sup>th</sup> - 26<sup>th</sup>, 2025</Heading>
       <ControlsPanel />
-      <Flex gap={2} direction={{ base: "column", md: "row" }}>
+      <Flex gap={2} direction={{ base: "column", lg: "row" }}>
         <Flex flex={1}>
           <GraphPanel />
         </Flex>
