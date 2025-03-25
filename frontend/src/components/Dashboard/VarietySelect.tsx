@@ -1,4 +1,4 @@
-import { createListCollection, ListCollection, Portal, Select } from "@chakra-ui/react";
+import { createListCollection, ListCollection } from "@chakra-ui/react";
 import StyledSelect from "../Common/StyledSelect";
 
 const varieties: ListCollection = createListCollection({
