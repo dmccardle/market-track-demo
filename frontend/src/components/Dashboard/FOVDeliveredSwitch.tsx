@@ -7,14 +7,14 @@ const FOVDeliveredSwitch: React.FC = () => {
   return (
     <HStack gap={4}>
       {/* TODO: make this centered on the Switch, not the Switch & Text */}
-      <Text fontWeight={checked ? 'normal' : 'bold'} textStyle="xl">FOB</Text>
+      <Text fontWeight={checked ? 'normal' : 'bold'} textStyle="xl" position="absolute" translate="-3em">FOB</Text>
       <Switch.Root size="lg" variant="solid" checked={checked} onCheckedChange={(e) => setChecked(e.checked)}>
         <Switch.HiddenInput />
         <Switch.Control>
           <Switch.Thumb />
         </Switch.Control>
       </Switch.Root>
-      <Text fontWeight={checked ? 'bold' : 'normal'} textStyle="xl">Delivered</Text>
+      <Text fontWeight={checked ? 'bold' : 'normal'} textStyle="xl" position="absolute" translate="3em">Delivered</Text>
     </HStack>
   );
 };
