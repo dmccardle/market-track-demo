@@ -1,6 +1,7 @@
 import { Center, Flex, HStack } from "@chakra-ui/react";
 import VarietySelect from "./VarietySelect";
 import FOVDeliveredSwitch from "./FOVDeliveredSwitch";
+import DestinationSelect from "./DestinationSelect";
 
 const ControlsPanel: React.FC = () => {
   
@@ -9,9 +10,8 @@ const ControlsPanel: React.FC = () => {
       <Center>
         <HStack gap={1}>
           <VarietySelect />
-          <VarietySelect />
+          <DestinationSelect />
         </HStack>
-
       </Center>
       <Center>
         <FOVDeliveredSwitch />

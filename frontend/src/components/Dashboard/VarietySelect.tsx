@@ -1,4 +1,5 @@
 import { createListCollection, ListCollection, Portal, Select } from "@chakra-ui/react";
+import StyledSelect from "../Common/StyledSelect";
 
 const varieties: ListCollection = createListCollection({
   items: [
@@ -11,28 +12,7 @@ const varieties: ListCollection = createListCollection({
 const VarietySelect: React.FC = () => {
   
   return (
-    <Select.Root collection={varieties}>
-      <Select.Control>
-        <Select.Trigger>
-          <Select.ValueText placeholder="Variety" />
-        </Select.Trigger>
-        <Select.IndicatorGroup>
-          <Select.Indicator />
-        </Select.IndicatorGroup>
-      </Select.Control>
-      <Portal>
-        <Select.Positioner>
-          <Select.Content>
-            {varieties.items.map((variety) => (
-              <Select.Item item={variety} key={variety.value}>
-                {variety.label}
-                <Select.ItemIndicator />
-              </Select.Item>
-            ))}
-          </Select.Content>
-        </Select.Positioner>
-      </Portal>
-    </Select.Root>
+    <StyledSelect collection={varieties} placeholder="Variety" />
   );
 };
 

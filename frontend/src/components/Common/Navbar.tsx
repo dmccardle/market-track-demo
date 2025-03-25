@@ -13,7 +13,7 @@ function Navbar() {
       top={0}
       p={4}
     >
-      <Heading size={{ base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }} color="black">PEI Spud Market Track</Heading>
+      <Heading size={{ base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }} color="black">PEI Potato Market Track</Heading>
     </Flex>
   )
 }
