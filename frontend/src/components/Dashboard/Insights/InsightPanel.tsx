@@ -21,9 +21,9 @@ const InsightPanel: React.FC = () => {
         </Heading>
       </Grid>
 
-      <InsightSegment label="This week" leftValue="1,500 cwt" rightValue="$20.00" />
+      <InsightSegment label="This week" leftValue="1,550 cwt" rightValue="$23.00" />
       <InsightSegment label="Change from last week" leftValue="- 100 cwt" leftVariant="negative" rightValue="+ $0.50" rightVariant="positive" />
-      <InsightSegment label="Crop year average" leftValue="1,450 cwt" rightValue="$18.75" />
+      <InsightSegment label="Crop year average" leftValue="1,450 cwt" rightValue="$19.75" />
     </Box>
   );
 };

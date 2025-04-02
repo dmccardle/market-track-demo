@@ -2,34 +2,32 @@ import { ApexOptions } from "apexcharts";
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
-// const formatCwtData = (cwtData: number[]): string[] => {
-//   return cwtData.map((data) => data.toLocaleString());
-// };
+const formatCwtData = (cwtData: number): string => {
+  return cwtData.toLocaleString();
+};
 
-// const formatPriceData = (priceData: number[]): string[] => {
-//   return priceData.map((data) => (new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" })).format(data))
-// }
+const formatPriceData = (priceData: number): string => {
+  return (new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" })).format(priceData);
+}
 
 interface DoubleLineGraphProps {
   name1: string;
   data1: number[],
   color1: string;
-  yRange1?: number;
   name2: string;
   data2: number[],
   color2: string;
-  yRange2?: number;
 }
 
-const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1, yRange1 = 0, name2, data2, color2, yRange2 = 0 }) => {
+const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1, name2, data2, color2 }) => {
   // TODO: make this figure out if it is a cwt or price data to format
   const formatDataLabel = (dataPoint: number): string => {
     const inData1 = data1.includes(dataPoint);
     const inData2 = data2.includes(dataPoint);
     if (inData1 && !inData2) {
-      return dataPoint.toLocaleString();
+      return formatCwtData(dataPoint);
     } else if (inData2 && !inData1) {
-      return (new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" })).format(dataPoint)
+      return formatPriceData(dataPoint);
     } else {
       return "";
     }
@@ -48,7 +46,8 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
       name: name1,
       data: data1.map((data, index) => {
         return { x: dateRange.at(index), y: data }
-      })
+      }),
+      color: color1,
     }
   ];
 
@@ -58,12 +57,20 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
       data: data2.map((data, index) => {
         return { x: dateRange.at(index), y: data }
       }),
+      color: color2,
     }
   ];
 
   const options2: ApexOptions = {
     chart: {
-      id: "line"
+      id: "line",
+      zoom: {
+        enabled: false,
+      },
+    },
+    title: {
+      text: "CWT & Average Price Changes",
+      align: "center",
     },
     stroke: {
       curve: "straight"
@@ -80,17 +87,21 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
     },
     dataLabels: {
       enabled: true,
-      formatter: formatDataLabel
+      formatter: formatDataLabel,
+      offsetY: -10,
+      textAnchor: "start",
     },
     yaxis: [
       {
         labels: {
           style: {
             colors: color1
-          }
+          },
+          formatter: formatCwtData
         },
+        stepSize: 100,
         title: {
-          text: "CWT",
+          text: name1,
           rotate: 360,
           style: {
             color: color1,
@@ -98,26 +109,28 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
           offsetX: -10,
         },
         // TODO: make range configurable
-        max: (Math.ceil(Math.max(...data1) + yRange1)),
-        min: (Math.floor(Math.min(...data1) - yRange1))
+        max: Math.ceil(Math.max(...data1)/100)*100 + 100,
+        min: Math.floor(Math.min(...data1)/100)*100 - 100,
       },
       {
         opposite: true,
         labels: {
           style: {
             colors: color2
-          }
+          },
+          formatter: formatPriceData
         },
+        stepSize: 1,
         title: {
-          text: "Avg. Price",
+          text: name2,
           rotate: 360,
           style: {
             color: color2
           },
           offsetX: 20,
         },
-        max: (Math.ceil(Math.max(...data2) + yRange2)),
-        min: (Math.floor(Math.min(...data2) - yRange2))
+        max: Math.ceil(Math.max(...data2)) + 1,
+        min: Math.floor(Math.min(...data2)) - 2,
       }
     ],
   }
