@@ -22,6 +22,19 @@ interface DoubleLineGraphProps {
 }
 
 const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1, yRange1 = 0, name2, data2, color2, yRange2 = 0 }) => {
+  // TODO: make this figure out if it is a cwt or price data to format
+  const formatDataLabel = (dataPoint: number): string => {
+    const inData1 = data1.includes(dataPoint);
+    const inData2 = data2.includes(dataPoint);
+    if (inData1 && !inData2) {
+      return dataPoint.toLocaleString();
+    } else if (inData2 && !inData1) {
+      return (new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" })).format(dataPoint)
+    } else {
+      return "";
+    }
+  }
+  
   const dateRange = [
     new Date("2025-03-05").getTime(),
     new Date("2025-03-12").getTime(),
@@ -44,7 +57,7 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
       name: name2,
       data: data2.map((data, index) => {
         return { x: dateRange.at(index), y: data }
-      })
+      }),
     }
   ];
 
@@ -64,6 +77,10 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
     ],
     xaxis: {
       type: "datetime"
+    },
+    dataLabels: {
+      enabled: true,
+      formatter: formatDataLabel
     },
     yaxis: [
       {
