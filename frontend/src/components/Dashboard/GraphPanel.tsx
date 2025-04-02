@@ -1,5 +1,6 @@
 import React from "react";
 import DoubleLineGraph from "./Graphs/DoubleLineGraph";
+import { Box } from "@chakra-ui/react";
 
 const GraphPanel: React.FC = () => {
   const cwtData: number[] = [1500, 1450, 1600, 1650, 1675];
@@ -8,10 +9,9 @@ const GraphPanel: React.FC = () => {
   const priceColor: string = "#654321";
 
   return (
-    <DoubleLineGraph
-      name1="cwt" data1={cwtData} color1={cwtColor} yRange1={50}
-      name2="avg.price" data2={priceData} color2={priceColor} yRange2={0.25}
-    />
+    <Box width="100%">
+      <DoubleLineGraph data1={cwtData} data2={priceData} color1={cwtColor} color2={priceColor} name1="CWT" name2="Avg. Price" />
+    </Box>
   )
 };
 
