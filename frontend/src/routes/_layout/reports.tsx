@@ -1,6 +1,5 @@
-import { isLoggedIn } from "@/hooks/useAuth";
 import { Container, Text } from "@chakra-ui/react";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import React from "react";
 
 
