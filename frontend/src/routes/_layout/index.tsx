@@ -1,4 +1,4 @@
-import { Center, Flex, Heading } from "@chakra-ui/react"
+import { Flex, Heading } from "@chakra-ui/react"
 import { createFileRoute } from "@tanstack/react-router"
 import DashboardTabs from "@/components/Dashboard/DashboardTabs";
 
