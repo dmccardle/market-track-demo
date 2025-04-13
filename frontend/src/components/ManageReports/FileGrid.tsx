@@ -5,7 +5,7 @@ import FileCard from "./FileCard";
 const FileGrid: React.FC = () => {
   
   return (
-    <Grid templateColumns="repeat(4, 1fr)" gap={4}>
+    <Grid templateColumns={{ base: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }} gap={4}>
       <GridItem>
         <FileCard />
       </GridItem>
