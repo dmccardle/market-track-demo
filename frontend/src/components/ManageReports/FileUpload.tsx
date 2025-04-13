@@ -24,6 +24,7 @@ const FileUpload: React.FC = () => {
         <FileUploadDropzone filetype=".xls" fileMime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" updateFunction={acceptFileUpload}/>
         <FileUploadDropzone filetype=".pdf" fileMime="application/pdf" updateFunction={acceptFileUpload}/>
       </Flex>
+      {/* TODO: add functionality to call server & save files on press */}
       <Button width="fit-content" disabled={!pdfUploaded || !excelUploaded}>Save</Button>
     </Flex>
   );
