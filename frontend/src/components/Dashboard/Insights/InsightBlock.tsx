@@ -8,9 +8,9 @@ interface InsightBlockProps {
 const getVariantColor = (variant?: string) => {
   switch(variant) {
     case 'positive':
-      return 'green';
+      return '#168400';
     case 'negative':
-      return 'red';
+      return '#950000';
     default:
       // TODO: make this use the default text theme colour
       return 'black';

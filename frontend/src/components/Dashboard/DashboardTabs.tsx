@@ -1,12 +1,7 @@
-import { Center, SystemStyleObject, Tabs, Text } from "@chakra-ui/react";
+import { Center, Tabs, Text } from "@chakra-ui/react";
 import React, { useState } from "react"
 import { FaBox, FaStore, FaTruckMoving } from "react-icons/fa";
 import DashboardContent from "./DashboardContent";
-
-const openAnimation: SystemStyleObject = {
-  animationName: "scale-in",
-  animationDuration: "300ms",
-};
 
 const DashboardTabs: React.FC = () => {
   const [value, setValue] = useState<string | null>("consumer")
@@ -32,22 +27,13 @@ const DashboardTabs: React.FC = () => {
           </Tabs.Trigger>
         </Tabs.List>
       </Center>
-      <Tabs.Content
-        value="consumer"
-        _open={openAnimation}
-      >
+      <Tabs.Content value="consumer">
         <DashboardContent />
       </Tabs.Content>
-      <Tabs.Content
-        value="bulk"
-        _open={openAnimation}
-      >
+      <Tabs.Content value="bulk">
         <DashboardContent />
       </Tabs.Content>
-      <Tabs.Content
-        value="count"
-        _open={openAnimation}
-      >
+      <Tabs.Content value="count">
         <DashboardContent />
       </Tabs.Content>
     </Tabs.Root>

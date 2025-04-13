@@ -4,7 +4,7 @@ import { Box } from "@chakra-ui/react";
 
 const GraphPanel: React.FC = () => {
   const cwtData: number[] = [1500, 1450, 1600, 1650, 1550];
-  const cwtColor: string = "#b43993";
+  const cwtColor: string = "#00b8e2";
   const priceData: number[] = [22, 22, 22.50, 22.50, 23];
   const priceColor: string = "#39b45a";
 
