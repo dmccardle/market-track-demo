@@ -1,21 +1,30 @@
-import { Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Button, Flex, Heading, Icon, Text } from "@chakra-ui/react";
 import React from "react"
-import { FaRegFilePdf, FaRegTimesCircle } from "react-icons/fa";
+import { FaRegTimesCircle } from "react-icons/fa";
+import { FaRegFilePdf, FaRegFile } from "react-icons/fa6";
+import { MdOutlineFileOpen } from "react-icons/md";
 
 interface FileCardProps {
+  icon: string;
   buttonIcon: string;
 };
 
 const getIconFromString = (iconName: string) => {
   switch (iconName) {
+    case "fa-reg-file":
+      return <FaRegFile />;
+    case "fa-reg-file-pdf":
+      return <FaRegFilePdf />;
     case "fa-reg-times-circle":
-      return <FaRegTimesCircle />
+      return <FaRegTimesCircle />;
+    case "md-outline-file-open":
+      return <MdOutlineFileOpen />;
     default:
-      return undefined
+      return undefined;
   }
 }
 
-const FileCard: React.FC<FileCardProps> = ({ buttonIcon }) => {
+const FileCard: React.FC<FileCardProps> = ({ icon, buttonIcon }) => {
   
   return (
     <Flex
@@ -32,7 +41,11 @@ const FileCard: React.FC<FileCardProps> = ({ buttonIcon }) => {
       boxShadow="sm"
     >
       <Flex gap={2} alignItems="center">
-        <FaRegFilePdf size="30" />
+        {icon &&
+          <Icon size="xl">
+            {getIconFromString(icon)}
+          </Icon>
+        }
         <Flex direction="column">
           <Heading>Apr2-Apr9-2025</Heading>
           <Text>Uploaded: April 9th, 2025 @ 4:55pm </Text>

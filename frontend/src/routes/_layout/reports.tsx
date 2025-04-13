@@ -1,13 +1,12 @@
 import FileGrid from "@/components/ManageReports/FileGrid";
-import { Container, Text } from "@chakra-ui/react";
 import { createFileRoute } from "@tanstack/react-router";
 import React from "react";
 
 
 const Reports: React.FC = () => {
-  
+
   return (
-     <FileGrid />
+     <FileGrid cardsIcon="fa-reg-file-pdf" buttonsIcon="md-outline-file-open"/>
   );
 };
 
