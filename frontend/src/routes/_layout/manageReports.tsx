@@ -35,8 +35,10 @@ const ManageReports: React.FC = () => {
 
   const [files, setFiles] = useState(initialFiles)
 
-  const removeReport = () => {
-    // TODO: update list - get index of report clicked (from event), remove from list & setList()
+  const removeReport = (event: React.MouseEvent<HTMLButtonElement>, index: number) => {
+    const updatedFilesList = [...files.slice(0, index), ...files.slice(index+1)]
+    setFiles(updatedFilesList);
+  
     toaster.create({
       description: "Report removed!",
       type: "success",
