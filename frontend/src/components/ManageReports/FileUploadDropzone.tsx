@@ -23,7 +23,7 @@ const FileUploadDropzone: React.FC<FileUploadDropzoneProps> = ({ filetype, fileM
           <LuUpload />
         </Icon>
         <FileUpload.DropzoneContent>
-          <Box>Drag and drop files here</Box>
+          <Box>Drag and drop {filetype.slice(1).toUpperCase()} file here</Box>
           <Box color="fg.muted">{filetype}</Box>
         </FileUpload.DropzoneContent>
       </FileUpload.Dropzone>

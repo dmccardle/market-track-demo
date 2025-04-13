@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Button, Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react"
 import { FaRegFilePdf, FaRegTimesCircle } from "react-icons/fa";
 
