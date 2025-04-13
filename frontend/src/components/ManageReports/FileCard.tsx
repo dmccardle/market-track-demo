@@ -9,6 +9,7 @@ interface FileCardProps {
   text: string;
   icon: string;
   buttonIcon: string;
+  buttonPress: Function;
 };
 
 const getIconFromString = (iconName: string) => {
@@ -26,7 +27,7 @@ const getIconFromString = (iconName: string) => {
   }
 }
 
-const FileCard: React.FC<FileCardProps> = ({ heading, text, icon, buttonIcon }) => {
+const FileCard: React.FC<FileCardProps> = ({ heading, text, icon, buttonIcon, buttonPress }) => {
   
   return (
     <Flex
@@ -54,7 +55,7 @@ const FileCard: React.FC<FileCardProps> = ({ heading, text, icon, buttonIcon }) 
         </Flex>
       </Flex>
       {buttonIcon &&
-        <Button variant="subtle">{getIconFromString(buttonIcon)}</Button>
+        <Button variant="subtle" onClick={(e) => buttonPress()}>{getIconFromString(buttonIcon)}</Button>
       }
     </Flex>
   );

@@ -6,6 +6,7 @@ interface FileGridProps {
   files: FileGridFile[];
   cardsIcon?: string;
   buttonsIcon?: string;
+  buttonsPress?: Function;
 }
 
 export interface FileGridFile {
@@ -13,7 +14,7 @@ export interface FileGridFile {
   text: string;
 }
 
-const FileGrid: React.FC<FileGridProps> = ({ files, cardsIcon = "", buttonsIcon = "" }) => {
+const FileGrid: React.FC<FileGridProps> = ({ files, cardsIcon = "", buttonsIcon = "", buttonsPress = () => {} }) => {
 
   // TODO: add button functionality, add toast on delete
   return (
@@ -22,7 +23,7 @@ const FileGrid: React.FC<FileGridProps> = ({ files, cardsIcon = "", buttonsIcon 
         {(item, index) => {
           return (
             <GridItem>
-              <FileCard heading={item.heading} text={item.text} icon={cardsIcon} buttonIcon={buttonsIcon} key={index} />
+              <FileCard heading={item.heading} text={item.text} icon={cardsIcon} buttonIcon={buttonsIcon} key={index} buttonPress={buttonsPress} />
             </GridItem>
           );
         }}

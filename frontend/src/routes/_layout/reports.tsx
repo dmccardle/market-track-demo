@@ -1,5 +1,6 @@
 import FileGrid, { FileGridFile } from "@/components/ManageReports/FileGrid";
 import { createFileRoute } from "@tanstack/react-router";
+import ReportPDF from "@/data/Weekly Recap April 3- 9 ,2025.pdf";
 import React from "react";
 
 
@@ -32,7 +33,12 @@ const Reports: React.FC = () => {
 ];
 
   return (
-     <FileGrid files={files} cardsIcon="fa-reg-file-pdf" buttonsIcon="md-outline-file-open"/>
+    <>
+      <FileGrid files={files} cardsIcon="fa-reg-file-pdf" buttonsIcon="md-outline-file-open" />
+      <a href={ReportPDF} target="_blank">
+        Open pdf
+      </a>
+    </>
   );
 };
 
