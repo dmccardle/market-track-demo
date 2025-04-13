@@ -35,7 +35,7 @@ const ManageReports: React.FC = () => {
 
   const [files, setFiles] = useState(initialFiles)
 
-  const removeReport = (event: React.MouseEvent<HTMLButtonElement>, index: number) => {
+  const removeReport = (index: number) => {
     const updatedFilesList = [...files.slice(0, index), ...files.slice(index+1)]
     setFiles(updatedFilesList);
   

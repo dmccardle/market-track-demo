@@ -58,7 +58,7 @@ const FileCard: React.FC<FileCardProps> = ({ heading, text, icon, index, buttonI
       {buttonIcon &&
         <Button
           variant="subtle"
-          onClick={(event) => buttonPress(event, index)}
+          onClick={() => buttonPress(index)}
         >
           {getIconFromString(buttonIcon)}
         </Button>
