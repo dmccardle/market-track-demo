@@ -22,7 +22,7 @@ const FileGrid: React.FC<FileGridProps> = ({ files, cardsIcon = "", buttonsIcon 
       <For each={files}>
         {(item, index) => {
           return (
-            <GridItem>
+            <GridItem key={index}>
               <FileCard heading={item.heading} text={item.text} icon={cardsIcon} buttonIcon={buttonsIcon} key={index} buttonPress={buttonsPress} />
             </GridItem>
           );
