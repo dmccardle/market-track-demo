@@ -11,7 +11,7 @@ const ManageReports: React.FC = () => {
       <Heading>Upload reports</Heading>
       <FileUpload />
       <Heading>Current reports</Heading>
-      <FileGrid />
+      <FileGrid buttonsIcon="fa-reg-times-circle"/>
     </Flex>
   );
 };

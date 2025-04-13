@@ -2,7 +2,20 @@ import { Button, Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react"
 import { FaRegFilePdf, FaRegTimesCircle } from "react-icons/fa";
 
-const FileCard: React.FC = () => {
+interface FileCardProps {
+  buttonIcon: string;
+};
+
+const getIconFromString = (iconName: string) => {
+  switch (iconName) {
+    case "fa-reg-times-circle":
+      return <FaRegTimesCircle />
+    default:
+      return undefined
+  }
+}
+
+const FileCard: React.FC<FileCardProps> = ({ buttonIcon }) => {
   
   return (
     <Flex
@@ -25,7 +38,9 @@ const FileCard: React.FC = () => {
           <Text>Uploaded: April 9th, 2025 @ 4:55pm </Text>
         </Flex>
       </Flex>
-      <Button variant="subtle"><FaRegTimesCircle/></Button>
+      {buttonIcon &&
+        <Button variant="subtle">{getIconFromString(buttonIcon)}</Button>
+      }
     </Flex>
   );
 };
