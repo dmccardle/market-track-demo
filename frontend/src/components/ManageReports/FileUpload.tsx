@@ -19,7 +19,7 @@ const FileUpload: React.FC = () => {
   }
    
   return (
-    <Flex direction="column">
+    <Flex direction="column" gap={4} width="fit-content" alignItems="center">
       <Flex direction="row" justifyContent="flex-start" gap={2}>
         <FileUploadDropzone filetype=".xls" fileMime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" updateFunction={acceptFileUpload}/>
         <FileUploadDropzone filetype=".pdf" fileMime="application/pdf" updateFunction={acceptFileUpload}/>

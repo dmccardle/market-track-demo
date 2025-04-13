@@ -9,7 +9,7 @@ interface FileUploadDropzoneProps {
 }
 
 const FileUploadDropzone: React.FC<FileUploadDropzoneProps> = ({ filetype, fileMime, updateFunction }) => {
-
+  // TODO: add some sort of feedback that the file upload was successful
   return (
     <FileUpload.Root
       width="fit-content"
