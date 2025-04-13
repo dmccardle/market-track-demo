@@ -6,6 +6,7 @@ import React from "react"
 
 const ManageReports: React.FC = () => {
   
+  // TODO: button press -> toast "report removed!"
   return (
     <Flex direction="column" gap={4}>
       <Heading>Upload reports</Heading>

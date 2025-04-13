@@ -5,6 +5,8 @@ import { FaRegFilePdf, FaRegFile } from "react-icons/fa6";
 import { MdOutlineFileOpen } from "react-icons/md";
 
 interface FileCardProps {
+  heading: string;
+  text: string;
   icon: string;
   buttonIcon: string;
 };
@@ -24,7 +26,7 @@ const getIconFromString = (iconName: string) => {
   }
 }
 
-const FileCard: React.FC<FileCardProps> = ({ icon, buttonIcon }) => {
+const FileCard: React.FC<FileCardProps> = ({ heading, text, icon, buttonIcon }) => {
   
   return (
     <Flex
@@ -47,8 +49,8 @@ const FileCard: React.FC<FileCardProps> = ({ icon, buttonIcon }) => {
           </Icon>
         }
         <Flex direction="column">
-          <Heading>Apr2-Apr9-2025</Heading>
-          <Text>Uploaded: April 9th, 2025 @ 4:55pm </Text>
+          <Heading>{heading}</Heading>
+          <Text>{text}</Text>
         </Flex>
       </Flex>
       {buttonIcon &&
