@@ -1,12 +1,38 @@
-import FileGrid from "@/components/ManageReports/FileGrid";
+import FileGrid, { FileGridFile } from "@/components/ManageReports/FileGrid";
 import { createFileRoute } from "@tanstack/react-router";
 import React from "react";
 
 
 const Reports: React.FC = () => {
+  const files: FileGridFile[] = [
+  {
+    heading: "Apr3-Apr9-2025",
+    text: "",
+  },
+  {
+    heading: "Mar27-Apr2-2025",
+    text: "",
+  },
+  {
+    heading: "Mar20-Mar26-2025",
+    text: "",
+  },
+  {
+    heading: "Mar13-Mar19-2025",
+    text: "",
+  },
+  {
+    heading: "Mar6-Mar12-2025",
+    text: "",
+  },
+  {
+    heading: "Feb27-Mar5-2025",
+    text: "",
+  },
+];
 
   return (
-     <FileGrid cardsIcon="fa-reg-file-pdf" buttonsIcon="md-outline-file-open"/>
+     <FileGrid files={files} cardsIcon="fa-reg-file-pdf" buttonsIcon="md-outline-file-open"/>
   );
 };
 

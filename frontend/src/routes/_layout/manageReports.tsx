@@ -1,10 +1,36 @@
-import FileGrid from "@/components/ManageReports/FileGrid";
+import FileGrid, { FileGridFile } from "@/components/ManageReports/FileGrid";
 import FileUpload from "@/components/ManageReports/FileUpload";
 import { Flex, Heading } from "@chakra-ui/react";
 import { createFileRoute } from "@tanstack/react-router";
 import React from "react"
 
 const ManageReports: React.FC = () => {
+  const files: FileGridFile[] = [
+    {
+      heading: "Apr3-Apr9-2025",
+      text: "Uploaded 4:55pm April 9th, 2025",
+    },
+    {
+      heading: "Mar27-Apr2-2025",
+      text: "Uploaded 4:55pm April 2nd, 2025",
+    },
+    {
+      heading: "Mar20-Mar26-2025",
+      text: "Uploaded 4:55pm March 26th, 2025",
+    },
+    {
+      heading: "Mar13-Mar19-2025",
+      text: "Uploaded 4:55pm March 19th, 2025",
+    },
+    {
+      heading: "Mar6-Mar12-2025",
+      text: "Uploaded 4:55pm March 12th, 2025",
+    },
+    {
+      heading: "Feb27-Mar5-2025",
+      text: "Uploaded 4:55pm March 5th, 2025",
+    },
+  ];
   
   // TODO: button press -> toast "report removed!"
   return (
@@ -12,7 +38,7 @@ const ManageReports: React.FC = () => {
       <Heading>Upload reports</Heading>
       <FileUpload />
       <Heading>Current reports</Heading>
-      <FileGrid cardsIcon="fa-reg-file" buttonsIcon="fa-reg-times-circle"/>
+      <FileGrid files={files} cardsIcon="fa-reg-file" buttonsIcon="fa-reg-times-circle"/>
     </Flex>
   );
 };

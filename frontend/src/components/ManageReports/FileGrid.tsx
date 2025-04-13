@@ -3,22 +3,17 @@ import React from "react"
 import FileCard from "./FileCard";
 
 interface FileGridProps {
+  files: FileGridFile[];
   cardsIcon?: string;
   buttonsIcon?: string;
 }
 
-interface File {
+export interface FileGridFile {
   heading: string;
   text: string;
 }
 
-const FileGrid: React.FC<FileGridProps> = ({ cardsIcon = "", buttonsIcon = "" }) => {
-  const files: File[] = [
-    {
-      heading: "Apr2-Apr9-2025",
-      text: "Uploaded at 4:55pm on April 9th, 2025",
-    },
-  ];
+const FileGrid: React.FC<FileGridProps> = ({ files, cardsIcon = "", buttonsIcon = "" }) => {
 
   // TODO: add button functionality, add toast on delete
   return (
