@@ -79,7 +79,17 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
       ...priceSeries
     ],
     xaxis: {
-      type: "datetime"
+      type: "category",
+      labels: {
+        formatter: (value) => {
+          const options: Intl.DateTimeFormatOptions = {
+            month: "long",
+            day: "numeric",
+          };
+
+          return (new Date(value)).toLocaleString("en-CA", options);
+        },
+      }
     },
     dataLabels: {
       enabled: true,
