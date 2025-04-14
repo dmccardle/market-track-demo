@@ -69,10 +69,10 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
       },
     },
     stroke: {
-      curve: "straight"
+      curve: "smooth",
     },
     markers: {
-      size: 8,
+      size: 6,
       hover: {
         sizeOffset: 1,
       }
