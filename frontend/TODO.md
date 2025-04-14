@@ -1,0 +1,1 @@
+- [ ] when zooming in on chart, ensure that only X Axis labels for the weeks in `dateRange` are shown
