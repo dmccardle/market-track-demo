@@ -1,6 +1,6 @@
 import React from "react";
 import DoubleLineGraph from "./Graphs/DoubleLineGraph";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 
 const GraphPanel: React.FC = () => {
   const cwtData: number[] = [1500, 1450, 1600, 1650, 1550];
@@ -9,20 +9,25 @@ const GraphPanel: React.FC = () => {
   const priceColor: string = "#39b45a";
 
   return (
-    <Box width="100%"
+    <Flex width="100%"
       border="1px solid"
       borderColor="gray.300"
       borderRadius="lg"
       p={1}
       bg="white"
       boxShadow="sm"
+      direction="column"
+      alignItems="center"
     >
-      <DoubleLineGraph
-        data1={cwtData} data2={priceData}
-        color1={cwtColor} color2={priceColor}
-        name1="CWT" name2="Avg. Price"
-      />
-    </Box>
+      <Heading justifyContent="center">CWT & Average Price</Heading>
+      <Box width="100%">
+        <DoubleLineGraph
+          data1={cwtData} data2={priceData}
+          color1={cwtColor} color2={priceColor}
+          name1="CWT" name2="Avg. Price"
+        />
+      </Box>
+    </Flex>
   )
 };
 

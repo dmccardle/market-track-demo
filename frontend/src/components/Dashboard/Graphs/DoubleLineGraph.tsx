@@ -68,10 +68,6 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
         enabled: false,
       },
     },
-    title: {
-      text: "CWT & Average Price Changes",
-      align: "center",
-    },
     stroke: {
       curve: "straight"
     },
