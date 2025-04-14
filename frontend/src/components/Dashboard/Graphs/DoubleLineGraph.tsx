@@ -71,12 +71,6 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
     stroke: {
       curve: "smooth",
     },
-    markers: {
-      size: 6,
-      hover: {
-        sizeOffset: 1,
-      }
-    },
     series: [
       ...cwtSeries,
       ...priceSeries
@@ -114,7 +108,21 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
     dataLabels: {
       enabled: true,
       formatter: formatDataLabel,
-      textAnchor: "start",
+      textAnchor: "middle",
+      style: {
+        fontWeight: "bold",
+      },
+      background: {
+        enabled: true,
+        borderRadius: 4,
+        padding: 6,
+        borderColor: "#444"
+      },
+      dropShadow: {
+        enabled: true,
+        blur: 4,
+        opacity: 0.45,
+      }
     },
     yaxis: [
       {
@@ -160,6 +168,7 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
       show: true,
       padding: {
         right: 60,
+        left: 60,
       },
     }
   }
