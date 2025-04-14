@@ -3,8 +3,15 @@ import VarietySelect from "./VarietySelect";
 import FOVDeliveredSwitch from "./FOVDeliveredSwitch";
 import DestinationSelect from "./DestinationSelect";
 
-const ControlsPanel: React.FC = () => {
-  
+interface ControlsPanelProps {
+  varietySelectOptions: String[];
+  destinationSelectOptions: String[];
+};
+
+const ControlsPanel: React.FC<ControlsPanelProps> = ({ varietySelectOptions, destinationSelectOptions }) => {
+  console.log(varietySelectOptions);
+  console.log(destinationSelectOptions);
+  // TODO: pass string lists into respective Select dropdowns
   return (
     <Flex direction="column" gap={2}>
       <Center>

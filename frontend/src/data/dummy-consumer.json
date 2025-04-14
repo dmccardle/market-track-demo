@@ -2,7 +2,7 @@
   "varieties": [
     {
       "name": "2.75 LW/RW",
-      "exportLocations": [
+      "exportDestinations": [
         {
           "id": "ONT.",
           "commonName": "Ontario",
@@ -29,7 +29,7 @@
     },
     {
       "name": "50 Yellow",
-      "exportLocations": [
+      "exportDestinations": [
         {
           "id": "ONT.",
           "commonName": "Ontario",
