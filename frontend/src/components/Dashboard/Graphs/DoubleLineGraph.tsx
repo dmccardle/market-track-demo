@@ -63,7 +63,7 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
 
   const options2: ApexOptions = {
     chart: {
-      id: "line",
+      type: "line",
       zoom: {
         enabled: false,
       },
@@ -114,25 +114,23 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
     dataLabels: {
       enabled: true,
       formatter: formatDataLabel,
-      offsetY: -10,
       textAnchor: "start",
     },
     yaxis: [
       {
         labels: {
           style: {
-            colors: color1
+            colors: color1,
           },
           formatter: formatCwtData
         },
         stepSize: 100,
-        title: {
-          text: name1,
-          rotate: 360,
-          style: {
-            color: color1,
-          },
-          offsetX: -10,
+        axisTicks: {
+          show: true,
+          width: 10,
+        },
+        axisBorder: {
+          show: true,
         },
         // TODO: make range configurable
         max: Math.ceil(Math.max(...data1)/100)*100 + 100,
@@ -142,23 +140,28 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
         opposite: true,
         labels: {
           style: {
-            colors: color2
+            colors: color2,
           },
           formatter: formatPriceData
         },
-        stepSize: 1,
-        title: {
-          text: name2,
-          rotate: 360,
-          style: {
-            color: color2
-          },
-          offsetX: 20,
+        axisTicks: {
+          show: true,
+          width: 10,
         },
+        axisBorder: {
+          show: true,
+        },
+        stepSize: 0.5,
         max: Math.ceil(Math.max(...data2)) + 1,
         min: Math.floor(Math.min(...data2)) - 2,
       }
     ],
+    grid: {
+      show: true,
+      padding: {
+        right: 60,
+      },
+    }
   }
   
 
