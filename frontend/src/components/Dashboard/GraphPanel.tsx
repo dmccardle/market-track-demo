@@ -19,7 +19,7 @@ const GraphPanel: React.FC = () => {
       direction="column"
       alignItems="center"
     >
-      <Heading justifyContent="center">CWT & Average Price</Heading>
+      <Heading justifyContent="center" p={2} textDecoration="underline">Weekly Changes</Heading>
       <Box width="100%">
         <DoubleLineGraph
           data1={cwtData} data2={priceData}

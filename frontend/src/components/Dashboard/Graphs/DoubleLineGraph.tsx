@@ -78,6 +78,23 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
       ...cwtSeries,
       ...priceSeries
     ],
+    legend: {
+      show: true,
+      position: "top",
+      horizontalAlign: "center",
+      fontSize: "20em",
+      fontWeight: 600,
+      labels: {
+        useSeriesColors: true,
+      },
+      itemMargin: {
+        horizontal: 10,
+      },
+      markers: {
+        size: 10,
+        shape: "rect"
+      },
+    },
     xaxis: {
       type: "category",
       labels: {
