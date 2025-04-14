@@ -20,7 +20,6 @@ interface DoubleLineGraphProps {
 }
 
 const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1, name2, data2, color2 }) => {
-  // TODO: make this figure out if it is a cwt or price data to format
   const formatDataLabel = (dataPoint: number): string => {
     const inData1 = data1.includes(dataPoint);
     const inData2 = data2.includes(dataPoint);

@@ -1,8 +1,13 @@
 import React from "react";
 import DoubleLineGraph from "./Graphs/DoubleLineGraph";
 import { Box, Flex, Heading } from "@chakra-ui/react";
+import DummyConsumer from "../../data/dummy-consumer.json";
+import ConsumerData from "@/data/ConsumerData";
 
 const GraphPanel: React.FC = () => {
+  const dummyConsumer: ConsumerData = DummyConsumer as ConsumerData;
+  console.log(dummyConsumer);
+
   const cwtData: number[] = [1850, 1850, 1800, 1650, 1600, 1500, 1450, 1600, 1650, 1550];
   const cwtColor: string = "#00b8e2";
   const priceData: number[] = [20.50, 20.50, 21, 21, 21.75, 22, 22, 22.50, 22.50, 23];
