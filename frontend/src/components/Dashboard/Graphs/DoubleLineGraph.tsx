@@ -34,12 +34,17 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
   }
   
   const dateRange = [
+    new Date("2025-01-31").getTime(),
+    new Date("2025-02-06").getTime(),
+    new Date("2025-02-13").getTime(),
+    new Date("2025-02-20").getTime(),
+    new Date("2025-02-27").getTime(),
     new Date("2025-03-05").getTime(),
     new Date("2025-03-12").getTime(),
     new Date("2025-03-19").getTime(),
     new Date("2025-03-26").getTime(),
     new Date("2025-04-02").getTime(),
-  ]
+  ];
 
   const cwtSeries: ApexAxisChartSeries = [
     {
@@ -65,8 +70,15 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
     chart: {
       type: "line",
       zoom: {
-        enabled: false,
+        enabled: true,
+        type: "x",
+        autoScaleYaxis: true,
       },
+      events: {
+        beforeZoom: (ctx) => {
+          ctx.w.config.xaxis.range = undefined;
+        }
+      }
     },
     stroke: {
       curve: "smooth",
@@ -94,6 +106,7 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
     },
     xaxis: {
       type: "category",
+      range: dateRange[dateRange.length - 1] - dateRange[dateRange.length - 5],
       labels: {
         formatter: (value) => {
           const options: Intl.DateTimeFormatOptions = {
