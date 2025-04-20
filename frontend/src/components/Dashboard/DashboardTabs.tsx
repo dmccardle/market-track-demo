@@ -14,6 +14,10 @@ const DashboardTabs: React.FC = () => {
   const dummyCount: MarketData = DummyCount as MarketData;
   const dummyBulk: MarketData = DummyBulk as MarketData;
 
+  const consumerData: MarketData[] = [dummyConsumer];
+  const countData: MarketData[] = [dummyCount];
+  const bulkData: MarketData[] = [dummyBulk];
+
   return (
     <Tabs.Root value={value} onValueChange={(e) => setValue(e.value)}
       width="100%"
@@ -36,13 +40,13 @@ const DashboardTabs: React.FC = () => {
         </Tabs.List>
       </Center>
       <Tabs.Content value="consumer">
-        <DashboardContent data={dummyConsumer} />
+        <DashboardContent data={consumerData} />
       </Tabs.Content>
       <Tabs.Content value="bulk">
-        <DashboardContent data={dummyBulk} />
+        <DashboardContent data={bulkData} />
       </Tabs.Content>
       <Tabs.Content value="count">
-        <DashboardContent data={dummyCount} />
+        <DashboardContent data={countData} />
       </Tabs.Content>
     </Tabs.Root>
   );
