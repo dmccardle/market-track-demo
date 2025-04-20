@@ -3,12 +3,12 @@ import React, { useState } from "react"
 import { FaBox, FaStore, FaTruckMoving } from "react-icons/fa";
 import DashboardContent from "./DashboardContent";
 import DummyConsumer from "../../data/dummy-consumer.json";
-import ConsumerData from "@/data/ConsumerData";
+import MarketData from "@/data/MarketData";
 
 const DashboardTabs: React.FC = () => {
   const [value, setValue] = useState<string | null>("consumer")
 
-  const dummyConsumer: ConsumerData = DummyConsumer as ConsumerData;
+  const dummyConsumer: MarketData = DummyConsumer as MarketData;
 
   return (
     <Tabs.Root value={value} onValueChange={(e) => setValue(e.value)}

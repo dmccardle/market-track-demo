@@ -1,5 +1,5 @@
 import VarietyData from "./VarietyData";
 
-export default interface ConsumerData {
+export default interface MarketData {
   varieties: VarietyData[];
 };

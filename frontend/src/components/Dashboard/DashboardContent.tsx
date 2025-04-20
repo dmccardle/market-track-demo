@@ -2,10 +2,10 @@ import { Flex } from "@chakra-ui/react";
 import ControlsPanel from "./ControlsPanel";
 import GraphPanel from "./GraphPanel";
 import InsightPanel from "./Insights/InsightPanel";
-import ConsumerData from "@/data/ConsumerData";
+import MarketData from "@/data/MarketData";
 
 interface DashboardContentProps {
-  data: ConsumerData;
+  data: MarketData;
 };
 
 const DashboardContent: React.FC<DashboardContentProps> = ({ data }) => {
