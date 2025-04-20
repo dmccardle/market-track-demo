@@ -1,11 +1,18 @@
 import React from "react";
 import DoubleLineGraph from "./Graphs/DoubleLineGraph";
 import { Box, Flex, Heading } from "@chakra-ui/react";
+import DataPoint from "@/data/DataPoint";
 
-const GraphPanel: React.FC = () => {
-  const cwtData: number[] = [1850, 1850, 1800, 1650, 1600, 1500, 1450, 1600, 1650, 1550];
+interface GraphPanelProps {
+  dataPoints?: DataPoint[];
+}
+
+const GraphPanel: React.FC<GraphPanelProps> = ({ dataPoints }) => {
+  // TODO: change the graph to accept data points as pairs (?) idk if even possible with 2 lines
+  // ex: [ { price: X, cwt: Y }, ... ]
+  const cwtData2: number[] = [1850, 1850, 1800, 1650, 1600, 1500, 1450, 1600, 1650, 1550];
   const cwtColor: string = "#00b8e2";
-  const priceData: number[] = [20.50, 20.50, 21, 21, 21.75, 22, 22, 22.50, 22.50, 23];
+  const priceData2: number[] = [20.50, 20.50, 21, 21, 21.75, 22, 22, 22.50, 22.50, 23];
   const priceColor: string = "#39b45a";
 
   return (
@@ -22,7 +29,7 @@ const GraphPanel: React.FC = () => {
       <Heading justifyContent="center" p={2} textDecoration="underline">Weekly Changes</Heading>
       <Box width="100%">
         <DoubleLineGraph
-          data1={cwtData} data2={priceData}
+          data1={cwtData2} data2={priceData2}
           color1={cwtColor} color2={priceColor}
           name1="CWT" name2="Avg. Price"
         />
