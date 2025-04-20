@@ -1,23 +1,20 @@
 import { Center, Flex, HStack } from "@chakra-ui/react";
-import VarietySelect from "./VarietySelect";
 import FOVDeliveredSwitch from "./FOVDeliveredSwitch";
-import DestinationSelect from "./DestinationSelect";
+import StyledSelect from "../Common/StyledSelect";
 
 interface ControlsPanelProps {
-  varietySelectOptions: String[];
-  destinationSelectOptions: String[];
+  varietySelectOptions: string[];
+  destinationSelectOptions: string[];
 };
 
 const ControlsPanel: React.FC<ControlsPanelProps> = ({ varietySelectOptions, destinationSelectOptions }) => {
-  console.log(varietySelectOptions);
-  console.log(destinationSelectOptions);
-  // TODO: pass string lists into respective Select dropdowns
+
   return (
     <Flex direction="column" gap={2}>
       <Center>
         <HStack gap={1}>
-          <VarietySelect />
-          <DestinationSelect />
+          <StyledSelect selectValues={varietySelectOptions} placeholder="Variety" />
+          <StyledSelect selectValues={destinationSelectOptions} placeholder="Destination" />
         </HStack>
       </Center>
       <Center>

@@ -1,17 +1,18 @@
-import { ListCollection, Portal, Select } from "@chakra-ui/react";
+import { createListCollection, ListCollection, CollectionItem, Portal, Select } from "@chakra-ui/react";
 
-interface CollectionItem {
-  value: string;
-  label: string;
-}
 
 interface StyledSelectProps {
-  collection: ListCollection<CollectionItem>;
+  selectValues: string[];
   placeholder: string;
 }
 
-const StyledSelect: React.FC<StyledSelectProps> = ({ collection, placeholder }) => {
-  
+const StyledSelect: React.FC<StyledSelectProps> = ({ selectValues, placeholder }) => {
+  const collection: ListCollection<CollectionItem> = createListCollection({
+    items: selectValues.map((value: string) => {
+      return { value: value, label: value } as CollectionItem;
+    }),
+  });
+
   return (
     <Select.Root collection={collection} width="12em">
       <Select.Control>
