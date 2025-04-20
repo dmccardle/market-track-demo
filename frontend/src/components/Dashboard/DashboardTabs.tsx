@@ -4,6 +4,7 @@ import { FaBox, FaStore, FaTruckMoving } from "react-icons/fa";
 import DashboardContent from "./DashboardContent";
 import DummyConsumer from "../../data/dummy-consumer.json";
 import DummyCount from "../../data/dummy-count.json";
+import DummyBulk from "../../data/dummy-bulk.json";
 import MarketData from "@/data/MarketData";
 
 const DashboardTabs: React.FC = () => {
@@ -11,6 +12,7 @@ const DashboardTabs: React.FC = () => {
 
   const dummyConsumer: MarketData = DummyConsumer as MarketData;
   const dummyCount: MarketData = DummyCount as MarketData;
+  const dummyBulk: MarketData = DummyBulk as MarketData;
 
   return (
     <Tabs.Root value={value} onValueChange={(e) => setValue(e.value)}
@@ -37,7 +39,7 @@ const DashboardTabs: React.FC = () => {
         <DashboardContent data={dummyConsumer} />
       </Tabs.Content>
       <Tabs.Content value="bulk">
-        <DashboardContent data={dummyConsumer} />
+        <DashboardContent data={dummyBulk} />
       </Tabs.Content>
       <Tabs.Content value="count">
         <DashboardContent data={dummyCount} />
