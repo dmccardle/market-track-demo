@@ -2,10 +2,14 @@ import { Center, Tabs, Text } from "@chakra-ui/react";
 import React, { useState } from "react"
 import { FaBox, FaStore, FaTruckMoving } from "react-icons/fa";
 import DashboardContent from "./DashboardContent";
+import DummyConsumer from "../../data/dummy-consumer.json";
+import ConsumerData from "@/data/ConsumerData";
 
 const DashboardTabs: React.FC = () => {
   const [value, setValue] = useState<string | null>("consumer")
-  
+
+  const dummyConsumer: ConsumerData = DummyConsumer as ConsumerData;
+
   return (
     <Tabs.Root value={value} onValueChange={(e) => setValue(e.value)}
       width="100%"
@@ -28,13 +32,13 @@ const DashboardTabs: React.FC = () => {
         </Tabs.List>
       </Center>
       <Tabs.Content value="consumer">
-        <DashboardContent />
+        <DashboardContent data={dummyConsumer} />
       </Tabs.Content>
       <Tabs.Content value="bulk">
-        <DashboardContent />
+        <DashboardContent data={dummyConsumer} />
       </Tabs.Content>
       <Tabs.Content value="count">
-        <DashboardContent />
+        <DashboardContent data={dummyConsumer} />
       </Tabs.Content>
     </Tabs.Root>
   );
