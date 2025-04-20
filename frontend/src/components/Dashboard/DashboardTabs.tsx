@@ -3,12 +3,14 @@ import React, { useState } from "react"
 import { FaBox, FaStore, FaTruckMoving } from "react-icons/fa";
 import DashboardContent from "./DashboardContent";
 import DummyConsumer from "../../data/dummy-consumer.json";
+import DummyCount from "../../data/dummy-count.json";
 import MarketData from "@/data/MarketData";
 
 const DashboardTabs: React.FC = () => {
   const [value, setValue] = useState<string | null>("consumer")
 
   const dummyConsumer: MarketData = DummyConsumer as MarketData;
+  const dummyCount: MarketData = DummyCount as MarketData;
 
   return (
     <Tabs.Root value={value} onValueChange={(e) => setValue(e.value)}
@@ -38,7 +40,7 @@ const DashboardTabs: React.FC = () => {
         <DashboardContent data={dummyConsumer} />
       </Tabs.Content>
       <Tabs.Content value="count">
-        <DashboardContent data={dummyConsumer} />
+        <DashboardContent data={dummyCount} />
       </Tabs.Content>
     </Tabs.Root>
   );
