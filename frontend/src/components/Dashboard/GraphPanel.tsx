@@ -4,8 +4,8 @@ import { Box, Flex, Heading } from "@chakra-ui/react";
 import DataPoint from "@/data/DataPoint";
 
 interface GraphPanelProps {
-  cwtData: number[];
-  priceData: number[];
+  cwtData: (number | undefined)[];
+  priceData: (number | undefined)[];
 }
 
 // ...this will likely need to be refactored to display different types of graphs: double line, double bar for sure

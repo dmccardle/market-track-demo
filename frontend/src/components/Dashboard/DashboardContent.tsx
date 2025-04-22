@@ -72,7 +72,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData }) => {
       />
       <Flex gap={2} direction={{ base: "column-reverse", lg: "row" }}>
         <Flex flex={1}  >
-          <GraphPanel />
+          <GraphPanel cwtData={cwtData} priceData={priceData} />
         </Flex>
         <InsightPanel />
       </Flex>
