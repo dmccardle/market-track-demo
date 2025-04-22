@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode, useContext } from 'react';
 
 interface DestinationContextType {
   destination: string;
@@ -6,6 +6,14 @@ interface DestinationContextType {
 }
 
 export const DestinationContext = createContext<DestinationContextType | undefined>(undefined);
+
+export const useDesintation = () => {
+  const destinationContext = useContext(DestinationContext);
+  if (!destinationContext) {
+    throw new Error("useDestination must be used within DestinationProvider.")
+  };
+  return destinationContext;
+}
 
 interface DestinationProviderProps {
   children: ReactNode;

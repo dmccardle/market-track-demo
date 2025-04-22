@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode, useContext } from 'react';
 
 interface VarietyContextType {
   variety: string;
@@ -6,6 +6,14 @@ interface VarietyContextType {
 }
 
 export const VarietyContext = createContext<VarietyContextType | undefined>(undefined);
+
+export const useVariety = () => {
+  const varietyContext = useContext(VarietyContext);
+  if (!varietyContext) {
+    throw new Error("useVariety must be used within VarietyProvider.")
+  };
+  return varietyContext;
+}
 
 interface VarietyProviderProps {
   children: ReactNode;

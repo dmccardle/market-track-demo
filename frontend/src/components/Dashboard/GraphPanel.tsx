@@ -4,10 +4,12 @@ import { Box, Flex, Heading } from "@chakra-ui/react";
 import DataPoint from "@/data/DataPoint";
 
 interface GraphPanelProps {
-  dataPoints?: DataPoint[];
+  cwtData: number[];
+  priceData: number[];
 }
 
-const GraphPanel: React.FC<GraphPanelProps> = ({ dataPoints }) => {
+// ...this will likely need to be refactored to display different types of graphs: double line, double bar for sure
+const GraphPanel: React.FC<GraphPanelProps> = ({ cwtData, priceData }) => {
   // TODO: change the graph to accept data points as pairs (?) idk if even possible with 2 lines
   // ex: [ { price: X, cwt: Y }, ... ]
   const cwtData2: number[] = [1850, 1850, 1800, 1650, 1600, 1500, 1450, 1600, 1650, 1550];

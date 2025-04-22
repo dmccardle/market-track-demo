@@ -3,17 +3,19 @@ import ControlsPanel from "./ControlsPanel";
 import GraphPanel from "./GraphPanel";
 import InsightPanel from "./Insights/InsightPanel";
 import MarketData from "@/data/MarketData";
-import { useContext } from "react";
-import { VarietyContext } from "@/contextProviders/VarietyProvider";
-import { DestinationContext } from "@/contextProviders/DestinationProvider";
+import { useVariety } from "@/contextProviders/VarietyProvider";
+import { useDesintation } from "@/contextProviders/DestinationProvider";
+import ExportData from "@/data/ExportData";
+import { useFob } from "@/contextProviders/FobProvider";
 
 interface DashboardContentProps {
   marketData: MarketData[];
 };
 
 const DashboardContent: React.FC<DashboardContentProps> = ({ marketData }) => {
-  const varietyContext = useContext(VarietyContext);
-  const destinationContext = useContext(DestinationContext);
+  const varietyContext = useVariety();
+  const destinationContext = useDesintation();
+  const fobContext = useFob();
 
   let varietyNames: Set<string> = new Set();
   let destinationNames: Set<string> = new Set();
@@ -39,6 +41,27 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData }) => {
 
   // tbh for the demo I could just make both filters required
   // ...but maybe a better sell if it gets more fancy
+  let cwtData: (number | undefined)[] = [];
+  let priceData: (number | undefined)[] = [];
+
+  if (varietyContext?.variety && destinationContext?.destination) {
+    // ASSUMING these are sorted by most recent to oldest
+    marketData.forEach((marketDataPoint) => {
+      const exportData: ExportData | undefined = marketDataPoint.getFilteredDataPoints(varietyContext.variety, destinationContext.destination);
+      // this has to generate the lists of cwt and avg prices, which will be passed in to the GraphPanel after.
+      if (exportData) {
+        // TODO: find a way to do this better :clown:
+        const cwt = fobContext.fob ? exportData.fob?.cwt : exportData.delivered?.cwt;
+        cwtData.unshift(cwt);
+
+        const price = fobContext.fob ? exportData.fob?.avgPrice : exportData.delivered?.avgPrice;
+        priceData.unshift(price);
+      } else {
+
+      };
+      
+    });
+  }
 
   return (
     <Flex direction="column" gap={4}>
