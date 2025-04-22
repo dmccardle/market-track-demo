@@ -12,7 +12,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData }) => {
   let varietyNames: Set<string> = new Set();
   let destinationNames: Set<string> = new Set();
   marketData.forEach((marketDataPoint) => {
-    marketDataPoint.getFilteredDataPoints(true);
     marketDataPoint.varieties.forEach((variety) => {
       varietyNames.add(variety.name);
       variety.exportDestinations.forEach((destination) => {
