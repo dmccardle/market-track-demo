@@ -2,17 +2,18 @@ import { Center, Tabs, Text } from "@chakra-ui/react";
 import React, { useState } from "react"
 import { FaBox, FaStore, FaTruckMoving } from "react-icons/fa";
 import DashboardContent from "./DashboardContent";
-import DummyConsumer from "../../data/dummy-consumer.json";
-import DummyCount from "../../data/dummy-count.json";
-import DummyBulk from "../../data/dummy-bulk.json";
+import { plainToClass } from "class-transformer";
+import consumerJson from "../../data/dummy-consumer.json";
+import countJson from "../../data/dummy-count.json";
+import bulkJson from "../../data/dummy-bulk.json";
 import MarketData from "@/data/MarketData";
 
 const DashboardTabs: React.FC = () => {
   const [value, setValue] = useState<string | null>("consumer")
 
-  const dummyConsumer: MarketData = DummyConsumer as MarketData;
-  const dummyCount: MarketData = DummyCount as MarketData;
-  const dummyBulk: MarketData = DummyBulk as MarketData;
+  const dummyConsumer: MarketData = plainToClass(MarketData, consumerJson);
+  const dummyCount: MarketData = plainToClass(MarketData, countJson)
+  const dummyBulk: MarketData = plainToClass(MarketData, bulkJson);
 
   const consumerData: MarketData[] = [dummyConsumer];
   const countData: MarketData[] = [dummyCount];
@@ -40,13 +41,13 @@ const DashboardTabs: React.FC = () => {
         </Tabs.List>
       </Center>
       <Tabs.Content value="consumer">
-        <DashboardContent data={consumerData} />
+        <DashboardContent marketData={consumerData} />
       </Tabs.Content>
       <Tabs.Content value="bulk">
-        <DashboardContent data={bulkData} />
+        <DashboardContent marketData={bulkData} />
       </Tabs.Content>
       <Tabs.Content value="count">
-        <DashboardContent data={countData} />
+        <DashboardContent marketData={countData} />
       </Tabs.Content>
     </Tabs.Root>
   );

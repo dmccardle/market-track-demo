@@ -5,14 +5,15 @@ import InsightPanel from "./Insights/InsightPanel";
 import MarketData from "@/data/MarketData";
 
 interface DashboardContentProps {
-  data: MarketData[];
+  marketData: MarketData[];
 };
 
-const DashboardContent: React.FC<DashboardContentProps> = ({ data }) => {
+const DashboardContent: React.FC<DashboardContentProps> = ({ marketData }) => {
   let varietyNames: Set<string> = new Set();
   let destinationNames: Set<string> = new Set();
-  data.forEach((dataPoint) => {
-    dataPoint.varieties.forEach((variety) => {
+  marketData.forEach((marketDataPoint) => {
+    marketDataPoint.getFilteredDataPoints(true);
+    marketDataPoint.varieties.forEach((variety) => {
       varietyNames.add(variety.name);
       variety.exportDestinations.forEach((destination) => {
         destinationNames.add(destination.commonName);
