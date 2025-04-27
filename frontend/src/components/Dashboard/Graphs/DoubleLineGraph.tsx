@@ -1,3 +1,4 @@
+import { DateRangeContextType, useDateRange } from "@/contextProviders/DateRangeContext";
 import { ApexOptions } from "apexcharts";
 import React from "react";
 import ReactApexChart from "react-apexcharts";
@@ -12,14 +13,16 @@ const formatPriceData = (priceData: number): string => {
 
 interface DoubleLineGraphProps {
   name1: string;
-  data1: number[],
+  data1: (number | undefined)[],
   color1: string;
   name2: string;
-  data2: number[],
+  data2: (number | undefined)[],
   color2: string;
 }
 
 const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1, name2, data2, color2 }) => {
+  const { dateRange }: DateRangeContextType = useDateRange();
+
   const formatDataLabel = (dataPoint: number): string => {
     const inData1 = data1.includes(dataPoint);
     const inData2 = data2.includes(dataPoint);
@@ -31,19 +34,6 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
       return "";
     }
   }
-  
-  const dateRange = [
-    new Date("2025-01-31").getTime(),
-    new Date("2025-02-06").getTime(),
-    new Date("2025-02-13").getTime(),
-    new Date("2025-02-20").getTime(),
-    new Date("2025-02-27").getTime(),
-    new Date("2025-03-05").getTime(),
-    new Date("2025-03-12").getTime(),
-    new Date("2025-03-19").getTime(),
-    new Date("2025-03-26").getTime(),
-    new Date("2025-04-02").getTime(),
-  ];
 
   const cwtSeries: ApexAxisChartSeries = [
     {
@@ -153,8 +143,8 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
           show: true,
         },
         // TODO: make range configurable
-        max: Math.ceil(Math.max(...data1)/100)*100 + 100,
-        min: Math.floor(Math.min(...data1)/100)*100 - 100,
+        // max: Math.ceil(Math.max(...data1)/100)*100 + 100,
+        // min: Math.floor(Math.min(...data1)/100)*100 - 100,
       },
       {
         opposite: true,
@@ -171,9 +161,9 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1,
         axisBorder: {
           show: true,
         },
-        stepSize: 0.5,
-        max: Math.ceil(Math.max(...data2)) + 1,
-        min: Math.floor(Math.min(...data2)) - 2,
+        // stepSize: 0.5,
+        // max: Math.ceil(Math.max(...data2)) + 1,
+        // min: Math.floor(Math.min(...data2)) - 2,
       }
     ],
     grid: {

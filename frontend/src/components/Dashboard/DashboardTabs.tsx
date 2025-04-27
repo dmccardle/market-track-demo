@@ -10,6 +10,25 @@ import MarketData from "@/data/MarketData";
 import { useVariety } from "@/contextProviders/VarietyProvider";
 import { useDesintation } from "@/contextProviders/DestinationProvider";
 
+interface ListData {
+  varietyNames: string[];
+  destinationNames: string[];
+}
+
+const getVarietyAndDestinationLists = (marketData: MarketData[]): ListData => {
+  let varietyNames: Set<string> = new Set();
+  let destinationNames: Set<string> = new Set();
+  marketData.forEach((marketDataPoint) => {
+    marketDataPoint.varieties.forEach((variety) => {
+      varietyNames.add(variety.name);
+      variety.exportDestinations.forEach((destination) => {
+        destinationNames.add(destination.id);
+      });
+    });
+  });
+  return { varietyNames: Array.from(varietyNames), destinationNames: Array.from(destinationNames) };
+}
+
 const DashboardTabs: React.FC = () => {
   const [value, setValue] = useState<string | null>("consumer");
   const varietyContext = useVariety();
@@ -22,6 +41,10 @@ const DashboardTabs: React.FC = () => {
   const consumerData: MarketData[] = [dummyConsumer];
   const countData: MarketData[] = [dummyCount];
   const bulkData: MarketData[] = [dummyBulk];
+
+  const consumerLists: ListData = getVarietyAndDestinationLists(consumerData);
+  const countLists: ListData = getVarietyAndDestinationLists(countData);
+  const bulkLists: ListData = getVarietyAndDestinationLists(bulkData);
 
   return (
     <Tabs.Root value={value} onValueChange={(e) => {
@@ -49,13 +72,25 @@ const DashboardTabs: React.FC = () => {
         </Tabs.List>
       </Center>
       <Tabs.Content value="consumer">
-        <DashboardContent marketData={consumerData} />
+        <DashboardContent
+          marketData={consumerData}
+          varietyNames={consumerLists.varietyNames}
+          destinationNames={consumerLists.destinationNames}
+        />
       </Tabs.Content>
       <Tabs.Content value="bulk">
-        <DashboardContent marketData={bulkData} />
+        <DashboardContent
+          marketData={bulkData}
+          varietyNames={bulkLists.varietyNames}
+          destinationNames={bulkLists.destinationNames}
+        />
       </Tabs.Content>
       <Tabs.Content value="count">
-        <DashboardContent marketData={countData} />
+        <DashboardContent
+          marketData={countData}
+          varietyNames={countLists.varietyNames}
+          destinationNames={countLists.destinationNames}
+        />
       </Tabs.Content>
     </Tabs.Root>
   );
