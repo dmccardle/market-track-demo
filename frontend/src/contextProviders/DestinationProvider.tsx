@@ -1,11 +1,7 @@
 import { createContext, useState, ReactNode, useContext } from 'react';
+import FilterContextType from './FilterContextType';
 
-interface DestinationContextType {
-  destination: string;
-  setDestination: (value: string) => void;
-}
-
-export const DestinationContext = createContext<DestinationContextType | undefined>(undefined);
+export const DestinationContext = createContext<FilterContextType | undefined>(undefined);
 
 export const useDesintation = () => {
   const destinationContext = useContext(DestinationContext);
@@ -20,10 +16,10 @@ interface DestinationProviderProps {
 }
 
 export const DestinationProvider = ({ children }: DestinationProviderProps) => {
-  const [destination, setDestination] = useState<string>('');
+  const [value, setValue] = useState<string>('');
 
   return (
-    <DestinationContext.Provider value={{ destination, setDestination }}>
+    <DestinationContext.Provider value={{ value, setValue }}>
       {children}
     </DestinationContext.Provider>
   );

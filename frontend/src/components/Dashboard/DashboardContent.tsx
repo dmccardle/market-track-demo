@@ -17,6 +17,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData }) => {
   const destinationContext = useDesintation();
   const fobContext = useFob();
 
+  console.log(varietyContext.value);
+  console.log(destinationContext.value);
+
   let varietyNames: Set<string> = new Set();
   let destinationNames: Set<string> = new Set();
   marketData.forEach((marketDataPoint) => {
@@ -44,10 +47,10 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData }) => {
   let cwtData: (number | undefined)[] = [];
   let priceData: (number | undefined)[] = [];
 
-  if (varietyContext?.variety && destinationContext?.destination) {
+  if (varietyContext?.value && destinationContext?.value) {
     // ASSUMING these are sorted by most recent to oldest
     marketData.forEach((marketDataPoint) => {
-      const exportData: ExportData | undefined = marketDataPoint.getFilteredDataPoints(varietyContext.variety, destinationContext.destination);
+      const exportData: ExportData | undefined = marketDataPoint.getFilteredDataPoints(varietyContext.value, destinationContext.value);
       // this has to generate the lists of cwt and avg prices, which will be passed in to the GraphPanel after.
       let cwt = undefined;
       let price = undefined;

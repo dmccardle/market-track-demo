@@ -1,15 +1,16 @@
+import FilterContextType from "@/contextProviders/FilterContextType";
 import { createListCollection, ListCollection, CollectionItem, Portal, Select } from "@chakra-ui/react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 
 
 interface StyledSelectProps {
   selectValues: string[];
   placeholder: string;
+  stateContext: React.Context<FilterContextType | undefined>;
 }
 
-const StyledSelect: React.FC<StyledSelectProps> = ({ selectValues, placeholder }) => {
-  const [value, setValue] = useState<string[]>([]);
-  console.log(value);
+const StyledSelect: React.FC<StyledSelectProps> = ({ selectValues, placeholder, stateContext }) => {
+  const context: FilterContextType = useContext(stateContext)!;
 
   const collection: ListCollection<CollectionItem> = createListCollection({
     items: selectValues.map((value: string) => {
@@ -21,8 +22,8 @@ const StyledSelect: React.FC<StyledSelectProps> = ({ selectValues, placeholder }
     <Select.Root
       collection={collection}
       width="12em"
-      value={value}
-      onValueChange={(e) => setValue(e.value)}
+      value={[context.value]}
+      onValueChange={(e) => context.setValue(e.value[0])}
     >
       <Select.Control>
         <Select.Trigger>

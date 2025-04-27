@@ -1,4 +1,4 @@
-import { Flex, HStack, Switch, Text } from "@chakra-ui/react";
+import { Flex, Switch, Text } from "@chakra-ui/react";
 import React, { useState } from "react"
 
 const FOVDeliveredSwitch: React.FC = () => {

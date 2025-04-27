@@ -1,11 +1,7 @@
 import { createContext, useState, ReactNode, useContext } from 'react';
+import FilterContextType from './FilterContextType';
 
-interface VarietyContextType {
-  variety: string;
-  setVariety: (value: string) => void;
-}
-
-export const VarietyContext = createContext<VarietyContextType | undefined>(undefined);
+export const VarietyContext = createContext<FilterContextType | undefined>(undefined);
 
 export const useVariety = () => {
   const varietyContext = useContext(VarietyContext);
@@ -20,10 +16,10 @@ interface VarietyProviderProps {
 }
 
 export const VarietyProvider = ({ children }: VarietyProviderProps) => {
-  const [variety, setVariety] = useState<string>('');
+  const [value, setValue] = useState<string>('');
 
   return (
-    <VarietyContext.Provider value={{ variety, setVariety }}>
+    <VarietyContext.Provider value={{ value, setValue }}>
       {children}
     </VarietyContext.Provider>
   );
