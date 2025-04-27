@@ -49,19 +49,17 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData }) => {
     marketData.forEach((marketDataPoint) => {
       const exportData: ExportData | undefined = marketDataPoint.getFilteredDataPoints(varietyContext.variety, destinationContext.destination);
       // this has to generate the lists of cwt and avg prices, which will be passed in to the GraphPanel after.
+      let cwt = undefined;
+      let price = undefined;
       if (exportData) {
         // TODO: find a way to do this better :clown:
-        const cwt = fobContext.fob ? exportData.fob?.cwt : exportData.delivered?.cwt;
-        cwtData.unshift(cwt);
-
-        const price = fobContext.fob ? exportData.fob?.avgPrice : exportData.delivered?.avgPrice;
-        priceData.unshift(price);
-      } else {
-
-      };
-      
+        cwt = fobContext.fob ? exportData.fob?.cwt : exportData.delivered?.cwt;
+        price = fobContext.fob ? exportData.fob?.avgPrice : exportData.delivered?.avgPrice;
+      }
+      cwtData.unshift(cwt);
+      priceData.unshift(price);
     });
-  }
+  };
 
   return (
     <Flex direction="column" gap={4}>
