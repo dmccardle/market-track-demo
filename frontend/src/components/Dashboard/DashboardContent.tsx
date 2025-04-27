@@ -17,9 +17,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData }) => {
   const destinationContext = useDesintation();
   const fobContext = useFob();
 
-  console.log(varietyContext.value);
-  console.log(destinationContext.value);
-
   let varietyNames: Set<string> = new Set();
   let destinationNames: Set<string> = new Set();
   marketData.forEach((marketDataPoint) => {
@@ -66,7 +63,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData }) => {
 
   return (
     <Flex direction="column" gap={4}>
-      {/* can still do it using extracted components... I will just need a context for Variety & Destination filters */}
       <ControlsPanel
         varietySelectOptions={Array.from(varietyNames)}
         destinationSelectOptions={Array.from(destinationNames)}

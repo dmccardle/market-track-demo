@@ -7,10 +7,13 @@ import consumerJson from "../../data/dummy-consumer.json";
 import countJson from "../../data/dummy-count.json";
 import bulkJson from "../../data/dummy-bulk.json";
 import MarketData from "@/data/MarketData";
-import { FilterProvider } from "@/contextProviders/FilterProvider";
+import { useVariety } from "@/contextProviders/VarietyProvider";
+import { useDesintation } from "@/contextProviders/DestinationProvider";
 
 const DashboardTabs: React.FC = () => {
-  const [value, setValue] = useState<string | null>("consumer")
+  const [value, setValue] = useState<string | null>("consumer");
+  const varietyContext = useVariety();
+  const destinationContext = useDesintation();
 
   const dummyConsumer: MarketData = plainToClass(MarketData, consumerJson);
   const dummyCount: MarketData = plainToClass(MarketData, countJson)
@@ -21,38 +24,40 @@ const DashboardTabs: React.FC = () => {
   const bulkData: MarketData[] = [dummyBulk];
 
   return (
-    <FilterProvider>
-      <Tabs.Root value={value} onValueChange={(e) => setValue(e.value)}
-        width="100%"
-        variant="enclosed"
-      >
-        <Center>
-          <Tabs.List>
-            <Tabs.Trigger value="consumer">
-              <FaStore />
-              <Text>Consumer</Text>
-            </Tabs.Trigger>
-            <Tabs.Trigger value="bulk">
-              <FaTruckMoving />
-              <Text>Bulk</Text>
-            </Tabs.Trigger>
-            <Tabs.Trigger value="count">
-              <FaBox />
-              <Text>Count</Text>
-            </Tabs.Trigger>
-          </Tabs.List>
-        </Center>
-        <Tabs.Content value="consumer">
-          <DashboardContent marketData={consumerData} />
-        </Tabs.Content>
-        <Tabs.Content value="bulk">
-          <DashboardContent marketData={bulkData} />
-        </Tabs.Content>
-        <Tabs.Content value="count">
-          <DashboardContent marketData={countData} />
-        </Tabs.Content>
-      </Tabs.Root>
-    </FilterProvider>
+    <Tabs.Root value={value} onValueChange={(e) => {
+      setValue(e.value);
+      varietyContext.setValue("");
+      destinationContext.setValue("");
+    }}
+      width="100%"
+      variant="enclosed"
+    >
+      <Center>
+        <Tabs.List>
+          <Tabs.Trigger value="consumer">
+            <FaStore />
+            <Text>Consumer</Text>
+          </Tabs.Trigger>
+          <Tabs.Trigger value="bulk">
+            <FaTruckMoving />
+            <Text>Bulk</Text>
+          </Tabs.Trigger>
+          <Tabs.Trigger value="count">
+            <FaBox />
+            <Text>Count</Text>
+          </Tabs.Trigger>
+        </Tabs.List>
+      </Center>
+      <Tabs.Content value="consumer">
+        <DashboardContent marketData={consumerData} />
+      </Tabs.Content>
+      <Tabs.Content value="bulk">
+        <DashboardContent marketData={bulkData} />
+      </Tabs.Content>
+      <Tabs.Content value="count">
+        <DashboardContent marketData={countData} />
+      </Tabs.Content>
+    </Tabs.Root>
   );
 };
 
