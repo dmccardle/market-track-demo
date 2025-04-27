@@ -3,11 +3,11 @@ import { VarietyProvider } from './VarietyProvider';
 import { DestinationProvider } from './DestinationProvider';
 import { FobProvider } from './FobProvider';
 
-interface DestinationProviderProps {
+interface FilterProviderProviderProps {
   children: ReactNode;
 }
 
-export const FilterProvider = ({ children }: DestinationProviderProps) => {
+export const FilterProvider = ({ children }: FilterProviderProviderProps) => {
 
   return (
     <VarietyProvider>

@@ -7,8 +7,9 @@ import { useVariety } from "@/contextProviders/VarietyProvider";
 import { useDesintation } from "@/contextProviders/DestinationProvider";
 import ExportData from "@/data/ExportData";
 import { useFob } from "@/contextProviders/FobProvider";
-import { useState } from "react";
-import DateRangeContext from "@/contextProviders/DateRangeContext";
+import { useAvgPrice } from "@/contextProviders/data/AvgPriceDataProvider";
+import { useCwt } from "@/contextProviders/data/CwtDataProvider";
+import { useDateRange } from "@/contextProviders/data/DateRangeDataContext";
 
 interface DashboardContentProps {
   marketData: MarketData[];
@@ -20,9 +21,11 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData, variety
   const varietyContext = useVariety();
   const destinationContext = useDesintation();
   const fobContext = useFob();
-
-  const [dateRange, setDateRange] = useState<number[]>([]);
   
+  const avgPriceContext = useAvgPrice();
+  const cwtContext = useCwt();
+  const dateRangeContext = useDateRange();
+
   // ALGORITHM:
   // using selected value from filters:
   // 1. filter down to data points in the current destination
@@ -36,25 +39,34 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData, variety
 
   // tbh for the demo I could just make both filters required
   // ...but maybe a better sell if it gets more fancy
-  let cwtData: (number | undefined)[] = [];
-  let priceData: (number | undefined)[] = [];
-
+  
   if (varietyContext?.value && destinationContext?.value) {
+    let cwtData: number[] = [];
+    let priceData: number[] = [];
+    let dateRange: number[] = [];
     // ASSUMING these are sorted by most recent to oldest
     marketData.forEach((marketDataPoint) => {
-      const exportData: ExportData | undefined = marketDataPoint.getFilteredDataPoints(varietyContext.value, destinationContext.value);
+      const exportData: ExportData | undefined = marketDataPoint.getFilteredDataPoints(varietyContext.value, destinationContext.value, fobContext.fob);
       // this has to generate the lists of cwt and avg prices, which will be passed in to the GraphPanel after.
+
       if (exportData) {
         // TODO: find a way to do this better :clown:
-        const cwt = fobContext.fob ? exportData.fob?.cwt : exportData.delivered?.cwt;
+        const cwt = fobContext.fob ? exportData.fob!.cwt : exportData.delivered!.cwt;
         cwtData.unshift(cwt);
-        const price = fobContext.fob ? exportData.fob?.avgPrice : exportData.delivered?.avgPrice;
+        const price = fobContext.fob ? exportData.fob!.avgPrice : exportData.delivered!.avgPrice;
         priceData.unshift(price);
         const weekTime: number = (new Date(marketDataPoint.weekEndDate)).getTime();
-        // this is causing an render loop - state is changing so it is updating again
-        // setDateRange([weekTime, ...dateRange]);
+        dateRange.unshift(weekTime);
       }
     });
+    
+    avgPriceContext.setValue(priceData);
+    cwtContext.setValue(cwtData);
+    dateRangeContext.setValue(dateRange);
+
+    console.log(`CWT: ${cwtData}`);
+    console.log(`Price: ${priceData}`);
+    console.log(`Dates: ${dateRange}`);
   };
 
   return (
@@ -65,9 +77,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData, variety
       />
       <Flex gap={2} direction={{ base: "column-reverse", lg: "row" }}>
         <Flex flex={1}  >
-          <DateRangeContext.Provider value={{ dateRange, setDateRange }}>
-            <GraphPanel cwtData={cwtData} priceData={priceData} />
-          </DateRangeContext.Provider>
+          <GraphPanel />
         </Flex>
         <InsightPanel />
       </Flex>

@@ -12,10 +12,12 @@ export default class MarketData {
     this.varieties = varieties;
   };
 
-  getFilteredDataPoints(variety: string, destination: string): ExportData | undefined {
+  getFilteredDataPoints(variety: string, destination: string, fob: boolean): ExportData | undefined {
     return this.varieties
     .find((varietyData: VarietyData) => varietyData.name == variety)?.exportDestinations
-    .find((exportDestination: ExportData) => exportDestination.id == destination);
+    .find((exportDestination: ExportData) => {
+      return exportDestination.id == destination && (fob ? exportDestination.fob : exportDestination.delivered);
+    });
   };
 
   getDataPointsByVariety(variety: string): VarietyData | undefined {

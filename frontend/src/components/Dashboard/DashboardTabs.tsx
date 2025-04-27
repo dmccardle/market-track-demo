@@ -9,6 +9,7 @@ import bulkJson from "../../data/dummy-bulk.json";
 import MarketData from "@/data/MarketData";
 import { useVariety } from "@/contextProviders/VarietyProvider";
 import { useDesintation } from "@/contextProviders/DestinationProvider";
+import { DataProvider } from "@/contextProviders/data/DataProvider";
 
 interface ListData {
   varietyNames: string[];
@@ -47,52 +48,54 @@ const DashboardTabs: React.FC = () => {
   const bulkLists: ListData = useMemo(() => getVarietyAndDestinationLists(bulkData), bulkData);
 
   return (
-    <Tabs.Root value={value} onValueChange={(e) => {
-      setValue(e.value);
-      varietyContext.setValue("");
-      destinationContext.setValue("");
-    }}
-      width="100%"
-      variant="enclosed"
-    >
-      <Center>
-        <Tabs.List>
-          <Tabs.Trigger value="consumer">
-            <FaStore />
-            <Text>Consumer</Text>
-          </Tabs.Trigger>
-          <Tabs.Trigger value="bulk">
-            <FaTruckMoving />
-            <Text>Bulk</Text>
-          </Tabs.Trigger>
-          <Tabs.Trigger value="count">
-            <FaBox />
-            <Text>Count</Text>
-          </Tabs.Trigger>
-        </Tabs.List>
-      </Center>
-      <Tabs.Content value="consumer">
-        <DashboardContent
-          marketData={consumerData}
-          varietyNames={consumerLists.varietyNames}
-          destinationNames={consumerLists.destinationNames}
-        />
-      </Tabs.Content>
-      <Tabs.Content value="bulk">
-        <DashboardContent
-          marketData={bulkData}
-          varietyNames={bulkLists.varietyNames}
-          destinationNames={bulkLists.destinationNames}
-        />
-      </Tabs.Content>
-      <Tabs.Content value="count">
-        <DashboardContent
-          marketData={countData}
-          varietyNames={countLists.varietyNames}
-          destinationNames={countLists.destinationNames}
-        />
-      </Tabs.Content>
-    </Tabs.Root>
+    <DataProvider>
+      <Tabs.Root value={value} onValueChange={(e) => {
+        setValue(e.value);
+        varietyContext.setValue("");
+        destinationContext.setValue("");
+      }}
+        width="100%"
+        variant="enclosed"
+      >
+        <Center>
+          <Tabs.List>
+            <Tabs.Trigger value="consumer">
+              <FaStore />
+              <Text>Consumer</Text>
+            </Tabs.Trigger>
+            <Tabs.Trigger value="bulk">
+              <FaTruckMoving />
+              <Text>Bulk</Text>
+            </Tabs.Trigger>
+            <Tabs.Trigger value="count">
+              <FaBox />
+              <Text>Count</Text>
+            </Tabs.Trigger>
+          </Tabs.List>
+        </Center>
+        <Tabs.Content value="consumer">
+          <DashboardContent
+            marketData={consumerData}
+            varietyNames={consumerLists.varietyNames}
+            destinationNames={consumerLists.destinationNames}
+          />
+        </Tabs.Content>
+        <Tabs.Content value="bulk">
+          <DashboardContent
+            marketData={bulkData}
+            varietyNames={bulkLists.varietyNames}
+            destinationNames={bulkLists.destinationNames}
+          />
+        </Tabs.Content>
+        <Tabs.Content value="count">
+          <DashboardContent
+            marketData={countData}
+            varietyNames={countLists.varietyNames}
+            destinationNames={countLists.destinationNames}
+          />
+        </Tabs.Content>
+      </Tabs.Root>
+    </DataProvider>
   );
 };
 

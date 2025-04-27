@@ -1,4 +1,6 @@
-import { DateRangeContextType, useDateRange } from "@/contextProviders/DateRangeContext";
+import { useAvgPrice } from "@/contextProviders/data/AvgPriceDataProvider";
+import { useCwt } from "@/contextProviders/data/CwtDataProvider";
+import { useDateRange } from "@/contextProviders/data/DateRangeDataContext";
 import { ApexOptions } from "apexcharts";
 import React from "react";
 import ReactApexChart from "react-apexcharts";
@@ -13,15 +15,16 @@ const formatPriceData = (priceData: number): string => {
 
 interface DoubleLineGraphProps {
   name1: string;
-  data1: (number | undefined)[],
   color1: string;
   name2: string;
-  data2: (number | undefined)[],
   color2: string;
 }
 
-const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, data1, color1, name2, data2, color2 }) => {
-  const { dateRange }: DateRangeContextType = useDateRange();
+const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, color1, name2, color2 }) => {
+  const data1 = useAvgPrice().value;
+  const data2 = useCwt().value;
+  const dateRange = useDateRange().value;
+
 
   const formatDataLabel = (dataPoint: number): string => {
     const inData1 = data1.includes(dataPoint);
