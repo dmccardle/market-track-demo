@@ -1,5 +1,6 @@
 {
-  "week": "Apr.3rd - Apr.9th",
+  "weekStartDate": "2024-04-03",
+  "weekEndDate": "2025-04-09",
   "varieties": [
     {
       "name": "60cnt",

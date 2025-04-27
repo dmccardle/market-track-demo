@@ -2,11 +2,13 @@ import ExportData from "./ExportData";
 import VarietyData from "./VarietyData";
 
 export default class MarketData {
-  week: string;
+  weekStartDate: string;
+  weekEndDate: string;
   varieties: VarietyData[];
 
-  constructor(week: string, varieties: VarietyData[]) {
-    this.week = week;
+  constructor(weekStartDate: string, weekEndDate: string, varieties: VarietyData[]) {
+    this.weekStartDate = weekStartDate;
+    this.weekEndDate = weekEndDate;
     this.varieties = varieties;
   };
 
