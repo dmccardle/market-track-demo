@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import ControlsPanel from "./ControlsPanel";
 import GraphPanel from "./GraphPanel";
 import InsightPanel from "./Insights/InsightPanel";
@@ -10,6 +10,7 @@ import { useFob } from "@/contextProviders/FobProvider";
 import { useAvgPrice } from "@/contextProviders/data/AvgPriceDataProvider";
 import { useCwt } from "@/contextProviders/data/CwtDataProvider";
 import { useDateRange } from "@/contextProviders/data/DateRangeDataContext";
+import { useMemo } from "react";
 
 interface DashboardContentProps {
   marketData: MarketData[];
@@ -39,48 +40,54 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData, variety
 
   // tbh for the demo I could just make both filters required
   // ...but maybe a better sell if it gets more fancy
+  useMemo(() => {
+    if (varietyContext?.value && destinationContext?.value) {
+      let cwtData: number[] = [];
+      let priceData: number[] = [];
+      let dateRange: number[] = [];
+      // ASSUMING these are sorted by most recent to oldest
+      marketData.forEach((marketDataPoint) => {
+        const exportData: ExportData | undefined = marketDataPoint.getFilteredDataPoints(varietyContext.value, destinationContext.value, fobContext.fob);
+        // this has to generate the lists of cwt and avg prices, which will be passed in to the GraphPanel after.
   
-  if (varietyContext?.value && destinationContext?.value) {
-    let cwtData: number[] = [];
-    let priceData: number[] = [];
-    let dateRange: number[] = [];
-    // ASSUMING these are sorted by most recent to oldest
-    marketData.forEach((marketDataPoint) => {
-      const exportData: ExportData | undefined = marketDataPoint.getFilteredDataPoints(varietyContext.value, destinationContext.value, fobContext.fob);
-      // this has to generate the lists of cwt and avg prices, which will be passed in to the GraphPanel after.
+        if (exportData) {
+          // TODO: find a way to do this better :clown:
+          const cwt = fobContext.fob ? exportData.fob!.cwt : exportData.delivered!.cwt;
+          cwtData.unshift(cwt);
+          const price = fobContext.fob ? exportData.fob!.avgPrice : exportData.delivered!.avgPrice;
+          priceData.unshift(price);
+          const weekTime: number = (new Date(marketDataPoint.weekEndDate)).getTime();
+          dateRange.unshift(weekTime);
+        }
+      });
+      
+      avgPriceContext.setValue(priceData);
+      cwtContext.setValue(cwtData);
+      dateRangeContext.setValue(dateRange);
+  
+      console.log(`CWT: ${cwtData}`);
+      console.log(`Price: ${priceData}`);
+      console.log(`Dates: ${dateRange}`);
+    };
+  }, [varietyContext.value, destinationContext.value]);
 
-      if (exportData) {
-        // TODO: find a way to do this better :clown:
-        const cwt = fobContext.fob ? exportData.fob!.cwt : exportData.delivered!.cwt;
-        cwtData.unshift(cwt);
-        const price = fobContext.fob ? exportData.fob!.avgPrice : exportData.delivered!.avgPrice;
-        priceData.unshift(price);
-        const weekTime: number = (new Date(marketDataPoint.weekEndDate)).getTime();
-        dateRange.unshift(weekTime);
-      }
-    });
-    
-    avgPriceContext.setValue(priceData);
-    cwtContext.setValue(cwtData);
-    dateRangeContext.setValue(dateRange);
-
-    console.log(`CWT: ${cwtData}`);
-    console.log(`Price: ${priceData}`);
-    console.log(`Dates: ${dateRange}`);
-  };
 
   return (
     <Flex direction="column" gap={4}>
       <ControlsPanel
-        varietySelectOptions={Array.from(varietyNames)}
-        destinationSelectOptions={Array.from(destinationNames)}
+        varietySelectOptions={varietyNames}
+        destinationSelectOptions={destinationNames}
       />
-      <Flex gap={2} direction={{ base: "column-reverse", lg: "row" }}>
-        <Flex flex={1}  >
-          <GraphPanel />
+      {varietyContext.value && destinationContext.value ?
+        <Flex gap={2} direction={{ base: "column-reverse", lg: "row" }}>
+          <Flex flex={1}  >
+            <GraphPanel />
+          </Flex>
+          <InsightPanel />
         </Flex>
-        <InsightPanel />
-      </Flex>
+      :
+        <Text>Select variety & destination</Text>
+      }
     </Flex>
   );
 };
