@@ -42,9 +42,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData, variety
   // ...but maybe a better sell if it gets more fancy
   useMemo(() => {
     if (varietyContext?.value && destinationContext?.value) {
-      let cwtData: number[] = [];
-      let priceData: number[] = [];
-      let dateRange: number[] = [];
       // ASSUMING these are sorted by most recent to oldest
       marketData.forEach((marketDataPoint) => {
         const exportData: ExportData | undefined = marketDataPoint.getFilteredDataPoints(varietyContext.value, destinationContext.value, fobContext.fob);
@@ -53,21 +50,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData, variety
         if (exportData) {
           // TODO: find a way to do this better :clown:
           const cwt = fobContext.fob ? exportData.fob!.cwt : exportData.delivered!.cwt;
-          cwtData.unshift(cwt);
+          cwtContext.setValue([cwt, ...cwtContext.value])
           const price = fobContext.fob ? exportData.fob!.avgPrice : exportData.delivered!.avgPrice;
-          priceData.unshift(price);
+          avgPriceContext.setValue([price, ...avgPriceContext.value])
           const weekTime: number = (new Date(marketDataPoint.weekEndDate)).getTime();
-          dateRange.unshift(weekTime);
+          dateRangeContext.setValue([weekTime, ...dateRangeContext.value])
         }
       });
-      
-      avgPriceContext.setValue(priceData);
-      cwtContext.setValue(cwtData);
-      dateRangeContext.setValue(dateRange);
-  
-      console.log(`CWT: ${cwtData}`);
-      console.log(`Price: ${priceData}`);
-      console.log(`Dates: ${dateRange}`);
     };
   }, [varietyContext.value, destinationContext.value]);
 
