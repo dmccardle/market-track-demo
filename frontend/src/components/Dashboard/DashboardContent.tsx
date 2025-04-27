@@ -26,7 +26,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData }) => {
     marketDataPoint.varieties.forEach((variety) => {
       varietyNames.add(variety.name);
       variety.exportDestinations.forEach((destination) => {
-        destinationNames.add(destination.commonName);
+        destinationNames.add(destination.id);
       });
     });
   });
