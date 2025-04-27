@@ -1,5 +1,5 @@
 import { Center, Tabs, Text } from "@chakra-ui/react";
-import React, { useState } from "react"
+import React, { useMemo, useState } from "react"
 import { FaBox, FaStore, FaTruckMoving } from "react-icons/fa";
 import DashboardContent from "./DashboardContent";
 import { plainToClass } from "class-transformer";
@@ -42,9 +42,9 @@ const DashboardTabs: React.FC = () => {
   const countData: MarketData[] = [dummyCount];
   const bulkData: MarketData[] = [dummyBulk];
 
-  const consumerLists: ListData = getVarietyAndDestinationLists(consumerData);
-  const countLists: ListData = getVarietyAndDestinationLists(countData);
-  const bulkLists: ListData = getVarietyAndDestinationLists(bulkData);
+  const consumerLists: ListData = useMemo(() => getVarietyAndDestinationLists(consumerData), consumerData);
+  const countLists: ListData = useMemo(() => getVarietyAndDestinationLists(countData), countData);
+  const bulkLists: ListData = useMemo(() => getVarietyAndDestinationLists(bulkData), bulkData);
 
   return (
     <Tabs.Root value={value} onValueChange={(e) => {
