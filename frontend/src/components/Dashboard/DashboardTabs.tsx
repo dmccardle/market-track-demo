@@ -3,9 +3,9 @@ import React, { useMemo, useState } from "react"
 import { FaBox, FaStore, FaTruckMoving } from "react-icons/fa";
 import DashboardContent from "./DashboardContent";
 import { plainToClass } from "class-transformer";
-import consumerJson from "../../data/dummy-consumer.json";
-import countJson from "../../data/dummy-count.json";
-import bulkJson from "../../data/dummy-bulk.json";
+import consumerJson from "../../data/dummy-consumer-1.json";
+import countJson from "../../data/dummy-count-1.json";
+import bulkJson from "../../data/dummy-bulk-1.json";
 import MarketData from "@/data/MarketData";
 import { useVariety } from "@/contextProviders/VarietyProvider";
 import { useDesintation } from "@/contextProviders/DestinationProvider";

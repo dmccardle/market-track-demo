@@ -1,0 +1,60 @@
+{
+  "weekStartDate": "2024-03-20",
+  "weekEndDate": "2025-03-26",
+  "varieties": [
+    {
+      "name": "60cnt",
+      "exportDestinations": [
+        {
+          "id": "ONT.",
+          "commonName": "Ontario",
+          "currency": "CAD",
+          "fob": {
+            "cwt": 777,
+            "avgPrice": 19.86
+          },
+          "delivered": {
+            "cwt": 49,
+            "avgPrice": 21.00
+          }
+        },
+        {
+          "id": "NS/NB",
+          "commonName": "Nova Scotia/New Brunswick",
+          "currency": "CAD",
+          "fob": {
+            "cwt": 24,
+            "avgPrice": 24.08
+          }
+        }
+      ]
+    },
+    {
+      "name": "80cnt",
+      "exportDestinations": [
+        {
+          "id": "ONT.",
+          "commonName": "Ontario",
+          "currency": "CAD",
+          "fob": {
+            "cwt": 1239,
+            "avgPrice": 17.73
+          },
+          "delivered": {
+            "cwt": 522,
+            "avgPrice": 19.66
+          }
+        },
+        {
+          "id": "MASS",
+          "commonName": "Massachusetts",
+          "currency": "USD",
+          "delivered": {
+            "cwt": 25,
+            "avgPrice": 18.08
+          }
+        }
+      ]
+    }
+  ]
+}

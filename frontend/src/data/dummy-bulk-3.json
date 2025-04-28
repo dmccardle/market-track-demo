@@ -1,0 +1,56 @@
+{
+  "weekStartDate": "2024-03-20",
+  "weekEndDate": "2025-03-26",
+  "varieties": [
+    {
+      "name": "LW/RW",
+      "exportDestinations": [
+        {
+          "id": "ONT.",
+          "commonName": "Ontario",
+          "currency": "CAD",
+          "delivered": {
+            "cwt": 1500,
+            "avgPrice": 25.42
+          }
+        },
+        {
+          "id": "QUE.",
+          "commonName": "Quebec",
+          "currency": "CAD",
+          "delivered": {
+            "cwt": 3000,
+            "avgPrice": 20.33
+          }
+        }
+      ]
+    },
+    {
+      "name": "Yellow",
+      "exportDestinations": [
+        {
+          "id": "ONT.",
+          "commonName": "Ontario",
+          "currency": "CAD",
+          "delivered": {
+            "cwt": 2800,
+            "avgPrice": 30.03
+          }
+        },
+        {
+          "id": "NS/NB",
+          "commonName": "Nova Scotia/New Brunswick",
+          "currency": "CAD",
+          "fob": {
+            "cwt": 2300,
+            "avgPrice": 24.57
+          },
+          "delivered": {
+            "cwt": 1625,
+            "avgPrice": 25.6
+          }
+        }
+      ]
+    }
+  ]
+}
