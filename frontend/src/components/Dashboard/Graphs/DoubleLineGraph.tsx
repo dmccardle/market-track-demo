@@ -5,6 +5,8 @@ import { ApexOptions } from "apexcharts";
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
+const FOUR_WEEKS = 2419200000;
+
 const formatCwtData = (cwtData: number): string => {
   return cwtData.toLocaleString();
 };
@@ -21,10 +23,9 @@ interface DoubleLineGraphProps {
 }
 
 const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, color1, name2, color2 }) => {
-  const data1 = useAvgPrice().value;
-  const data2 = useCwt().value;
+  const data1 = useCwt().value;
+  const data2 = useAvgPrice().value;
   const dateRange = useDateRange().value;
-
 
   const formatDataLabel = (dataPoint: number): string => {
     const inData1 = data1.includes(dataPoint);
@@ -98,7 +99,7 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, color1, name2,
     },
     xaxis: {
       type: "category",
-      range: dateRange[dateRange.length - 1] - dateRange[dateRange.length - 5],
+      range: FOUR_WEEKS,
       labels: {
         formatter: (value) => {
           const options: Intl.DateTimeFormatOptions = {
@@ -146,8 +147,8 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, color1, name2,
           show: true,
         },
         // TODO: make range configurable
-        // max: Math.ceil(Math.max(...data1)/100)*100 + 100,
-        // min: Math.floor(Math.min(...data1)/100)*100 - 100,
+        max: Math.ceil(Math.max(...data1)/100)*100 + 100,
+        min: Math.floor(Math.min(...data1)/100)*100 - 100,
       },
       {
         opposite: true,
@@ -164,9 +165,9 @@ const DoubleLineGraph: React.FC<DoubleLineGraphProps> = ({ name1, color1, name2,
         axisBorder: {
           show: true,
         },
-        // stepSize: 0.5,
-        // max: Math.ceil(Math.max(...data2)) + 1,
-        // min: Math.floor(Math.min(...data2)) - 2,
+        stepSize: 0.5,
+        max: Math.ceil(Math.max(...data2)) + 1,
+        min: Math.floor(Math.min(...data2)) - 2,
       }
     ],
     grid: {
