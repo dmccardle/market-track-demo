@@ -10,7 +10,7 @@ import { useFob } from "@/contextProviders/FobProvider";
 import { useAvgPrice } from "@/contextProviders/data/AvgPriceDataProvider";
 import { useCwt } from "@/contextProviders/data/CwtDataProvider";
 import { useDateRange } from "@/contextProviders/data/DateRangeDataContext";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 interface DashboardContentProps {
   marketData: MarketData[];
@@ -40,9 +40,12 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData, variety
 
   // tbh for the demo I could just make both filters required
   // ...but maybe a better sell if it gets more fancy
-  useMemo(() => {
+  useEffect(() => {
     if (varietyContext?.value && destinationContext?.value) {
       // ASSUMING these are sorted by most recent to oldest
+      let runningCwt: number[] = [];
+      let runningAvgPrice: number[] = [];
+      let runningDateRange: number[] = [];
       marketData.forEach((marketDataPoint) => {
         const exportData: ExportData | undefined = marketDataPoint.getFilteredDataPoints(varietyContext.value, destinationContext.value, fobContext.fob);
         // this has to generate the lists of cwt and avg prices, which will be passed in to the GraphPanel after.
@@ -50,16 +53,19 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ marketData, variety
         if (exportData) {
           // TODO: find a way to do this better :clown:
           const cwt = fobContext.fob ? exportData.fob!.cwt : exportData.delivered!.cwt;
-          cwtContext.setValue([cwt, ...cwtContext.value])
+          runningCwt.unshift(cwt);
           const price = fobContext.fob ? exportData.fob!.avgPrice : exportData.delivered!.avgPrice;
-          avgPriceContext.setValue([price, ...avgPriceContext.value])
+          runningAvgPrice.unshift(price);
           const weekTime: number = (new Date(marketDataPoint.weekEndDate)).getTime();
-          dateRangeContext.setValue([weekTime, ...dateRangeContext.value])
+          runningDateRange.unshift(weekTime);
         }
       });
-    };
+      // the running* vars are correct, but for some reason on the DoubleLineGraph, all values are [] when using context
+      cwtContext.setValue(runningCwt);
+      avgPriceContext.setValue(runningAvgPrice);
+      dateRangeContext.setValue(runningDateRange);
+    }
   }, [varietyContext.value, destinationContext.value]);
-
 
   return (
     <Flex direction="column" gap={4}>
