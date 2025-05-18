@@ -4,7 +4,7 @@ import { useTheme } from "next-themes"
 import { Radio, RadioGroup } from "@/components/ui/radio"
 
 const Appearance = () => {
-  const { theme, setTheme } = useTheme()
+  const { theme } = useTheme()
 
   return (
     <>
@@ -14,7 +14,6 @@ const Appearance = () => {
         </Heading>
 
         <RadioGroup
-          onValueChange={(e) => setTheme(e.value)}
           value={theme}
           colorPalette="teal"
         >

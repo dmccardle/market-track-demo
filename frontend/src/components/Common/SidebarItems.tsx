@@ -28,7 +28,6 @@ interface Item {
 
 const SidebarItems = ({ onClose }: SidebarItemsProps) => {
   const queryClient = useQueryClient()
-  const currentUser = queryClient.getQueryData<UserPublic>(["currentUser"])
 
   // TODO: switch back to checking if is superuser
   // const finalItems: Item[] = currentUser?.is_superuser

@@ -4,9 +4,9 @@ import { useState } from "react";
 
 const FileUpload: React.FC = () => {
   const [pdfUploaded, setPdfUploaded] = useState(false);
-  const [pdfFile, setPdfFile] = useState({})
+  const [, setPdfFile] = useState({})
   const [excelUploaded, setExcelUploaded] = useState(false);
-  const [excelFile, setExcelFile] = useState({})
+  const [, setExcelFile] = useState({})
 
   const acceptFileUpload = (details: FileUploadFileAcceptDetails) => {
     if(details.files[0].type === "application/pdf") {
