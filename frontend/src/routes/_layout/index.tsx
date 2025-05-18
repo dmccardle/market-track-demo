@@ -1,25 +1,18 @@
-import { Box, Container, Text } from "@chakra-ui/react"
+import { Flex, Heading } from "@chakra-ui/react"
 import { createFileRoute } from "@tanstack/react-router"
+import DashboardTabs from "@/components/Dashboard/DashboardTabs";
 
-import useAuth from "@/hooks/useAuth"
+const Dashboard: React.FC = () => {
+  return (
+    <Flex direction="column" gap={3} id="topLevelFlex">
+      <Heading size={{ base: "2xl", lg: "3xl"}}>March 19<sup>th</sup> - 26<sup>th</sup>, 2025</Heading>
+      <DashboardTabs />
+    </Flex>
+  );
+};
+
+export default Dashboard;
 
 export const Route = createFileRoute("/_layout/")({
   component: Dashboard,
-})
-
-function Dashboard() {
-  const { user: currentUser } = useAuth()
-
-  return (
-    <>
-      <Container maxW="full">
-        <Box pt={12} m={4}>
-          <Text fontSize="2xl" truncate maxW="sm">
-            Hi, {currentUser?.full_name || currentUser?.email} 👋🏼
-          </Text>
-          <Text>Welcome back, nice to see you again!</Text>
-        </Box>
-      </Container>
-    </>
-  )
-}
+});

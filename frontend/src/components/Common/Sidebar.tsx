@@ -26,20 +26,23 @@ const Sidebar = () => {
     <>
       {/* Mobile */}
       <DrawerRoot
-        placement="start"
+        placement="end"
         open={open}
         onOpenChange={(e) => setOpen(e.open)}
       >
         <DrawerBackdrop />
-        <DrawerTrigger asChild>
+        <DrawerTrigger
+          asChild
+          position="absolute"
+          top={{ base: "0.75em", sm: "0.875em", md: "1.125em" }}
+          right="0.5em"
+          display={{ base: "flex", lg: "none" }}
+        >
           <IconButton
             variant="ghost"
             color="inherit"
-            display={{ base: "flex", md: "none" }}
             aria-label="Open Menu"
-            position="absolute"
             zIndex="100"
-            m={4}
           >
             <FaBars />
           </IconButton>
@@ -49,7 +52,7 @@ const Sidebar = () => {
           <DrawerBody>
             <Flex flexDir="column" justify="space-between">
               <Box>
-                <SidebarItems />
+                <SidebarItems onClose={() => setOpen(false)}/>
                 <Flex
                   as="button"
                   onClick={() => {
@@ -78,11 +81,11 @@ const Sidebar = () => {
       {/* Desktop */}
 
       <Box
-        display={{ base: "none", md: "flex" }}
+        display={{ base: "none", lg: "flex" }}
         position="sticky"
         bg="bg.subtle"
         top={0}
-        minW="xs"
+        minW="15em"
         h="100vh"
         p={4}
       >

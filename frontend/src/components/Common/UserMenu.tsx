@@ -26,7 +26,7 @@ const UserMenu = () => {
           </MenuTrigger>
 
           <MenuContent>
-            <Link to="settings">
+            <Link to="/login">
               <MenuItem
                 closeOnSelect
                 value="user-settings"

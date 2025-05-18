@@ -1,0 +1,54 @@
+{
+  "varieties": [
+    {
+      "name": "2.75 LW/RW",
+      "exportDestinations": [
+        {
+          "id": "ONT.",
+          "commonName": "Ontario",
+          "currency": "CAD",
+          "fob": {
+            "cwt": 730,
+            "avgPrice": 16.63
+          },
+          "delivered": {
+            "cwt": 1398,
+            "avgPrice": 16.51
+          }
+        },
+        {
+          "id": "QUE.",
+          "commonName": "Quebec",
+          "currency": "CAD",
+          "delivered": {
+            "cwt": 500,
+            "avgPrice": 16.00
+          }
+        }
+      ]
+    },
+    {
+      "name": "50 Yellow",
+      "exportDestinations": [
+        {
+          "id": "ONT.",
+          "commonName": "Ontario",
+          "currency": "CAD",
+          "fob": {
+            "cwt": 125,
+            "avgPrice": 15.00
+          }
+        },
+        {
+          "id": "NS/NB",
+          "commonName": "Nova Scotia/New Brunswick",
+          "currency": "CAD",
+          "delivered": {
+            "cwt": 33,
+            "avgPrice": 18.08
+          }
+        }
+      ]
+    }
+  ]
+}

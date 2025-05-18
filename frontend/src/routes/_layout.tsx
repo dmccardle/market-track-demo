@@ -2,8 +2,8 @@ import { Flex } from "@chakra-ui/react"
 import { Outlet, createFileRoute, redirect } from "@tanstack/react-router"
 
 import Navbar from "@/components/Common/Navbar"
-import Sidebar from "@/components/Common/Sidebar"
 import { isLoggedIn } from "@/hooks/useAuth"
+import Sidebar from "@/components/Common/Sidebar"
 
 export const Route = createFileRoute("/_layout")({
   component: Layout,
